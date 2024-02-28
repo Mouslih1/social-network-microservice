@@ -11,9 +11,9 @@ public interface IUserService {
 
     List<UserDTO> getAllUsers();
 
-    void saveUser(UserDTO userDTO);
+    UserDTO saveUser(UserDTO userDTO);
 
-    UserDTO updateUtilisateur(UserDTO userDTO);
+    UserDTO updateUser(UserDTO userDTO);
 
     @Transactional
     void deleteUser(Long userId);

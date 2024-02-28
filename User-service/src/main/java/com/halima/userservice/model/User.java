@@ -1,10 +1,9 @@
 package com.halima.userservice.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Date;
 
 @Entity
 @Setter
@@ -12,6 +11,7 @@ import lombok.Setter;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -22,6 +22,6 @@ public class User {
     private String email;
     private String firstname;
     private String lastname;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String country;
 }

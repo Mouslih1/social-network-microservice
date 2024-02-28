@@ -45,15 +45,16 @@ public class UserService implements IUserService {
     }
     @Override
     @Transactional
-    public void saveUser(UserDTO userDTO) {
+    public UserDTO saveUser(UserDTO userDTO) {
         User user = convertToEntity(userDTO);
         userRepository.save(user);
+        return userDTO;
     }
 
 
     @Override
     @Transactional
-    public UserDTO updateUtilisateur(UserDTO userDTO) {
+    public UserDTO updateUser(UserDTO userDTO) {
         try {
             Optional<User> utilisateur = userRepository.findById(userDTO.getId());
             if (utilisateur.isPresent()) {
