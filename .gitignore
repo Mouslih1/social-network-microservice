@@ -30,6 +30,9 @@ target/
 
 # Sensitive or high-churn files:
 
+.idea/
+
+
 ### Eclipse ###
 .apt_generated
 .classpath

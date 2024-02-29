@@ -1,0 +1,25 @@
+server:
+  port: 8016
+spring:
+  application:
+    name: medias
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/social-networks
+    username: postgres
+    password: 1111
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+file:
+  storage:
+    path: /home/maro/IdeaProjects/social-network-microservice/images/
