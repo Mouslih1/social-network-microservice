@@ -48,3 +48,5 @@ D
 post-service/HELP.md,a\e\ae5f15de7d7da96159cc15027b100e14bc90c745
 G
 User-service/.gitignore,d\1\d13ebf8671377bf16dd434fd862c0d8a431c756b
+D
+post-service/pom.xml,3\4\341a7e13ca190ef95773f75495bd68ec12af6db8
