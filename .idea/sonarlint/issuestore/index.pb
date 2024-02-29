@@ -21,12 +21,8 @@ Sfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/dto/UserRelationDto.
 Xfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/client/PostServiceClient.java,d\0\d0797f12a77deebcd9deb40d8d7e100d1cf96606
 {
 Kfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/dto/PostDto.java,a\0\a0bb0eb1d65e15ad7abbf7c69ec6fb12790297f6
-å
-\feeds-service/src/main/java/com/nabilaitnacer/feedsservice/client/ReactionServiceClient.java,d\d\dd7c135625124d152f298dc3f10e0048e3eeae95
 É
 Sfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/dto/CompletReaction.java,9\8\980ecd22198225eb8dc312bc901b693ce1c3e2f3
-I
-feeds-service/dockerfiile,e\d\edb6f9060b765dd5ec20e8bbdcf7d9ff41fee456
 H
 feeds-service/Dockerfile,6\9\691d4572bafb11fe3fc3fe982a1c0cf9b41e02cd
 è
@@ -35,3 +31,14 @@ _feeds-service/src/main/java/com/nabilaitnacer/feedsservice/client/InteractionSe
 ^feeds-service/src/main/java/com/nabilaitnacer/feedsservice/client/FriendshipServiceClient.java,5\f\5f70fd34e6ecf25c44bc1534cf5e61cd2b714c58
 ~
 Nfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/dto/FriendShip.java,1\d\1d88bd9704a20ab915229f09265cc3aa33c90810
+ä
+Zfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/controller/FeedsController.java,9\2\928fadc8f701496e20e4d99e5f5557594bc3daf5
+á
+Wfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/FeedsServiceApplication.java,9\a\9a76aa0f4c02488b4ccc809e362f724d7f377ff1
+É
+Sfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/service/FeedService.java,e\2\e203f917d1e041daf1ab0d9a0ec29f726fb8623c
+}
+Mfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/config/Config.java,7\f\7f99c294d4abc448c08ea9893591fdd15e0e71e3
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

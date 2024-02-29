@@ -1,0 +1,7 @@
+spring:
+  data:
+    redis:
+      host: jdbc:redis://localhost/0
+      port: 6379
+server:
+  port: 8085

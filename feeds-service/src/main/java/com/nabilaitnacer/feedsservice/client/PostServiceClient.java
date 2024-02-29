@@ -5,6 +5,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @FeignClient(name = "post-service")
 public interface PostServiceClient {
 
@@ -12,7 +14,7 @@ public interface PostServiceClient {
     PostDto getPost(@PathVariable("postId") Long postId);
 
     @GetMapping("/post-service/post/user/{userId}")
-    PostDto getPostByUser(@PathVariable("userId") Long userId);
+    List<PostDto> getPostByUser(@PathVariable("userId") Long userId);
     //TODO send list of user ids and get list of posts
 
 

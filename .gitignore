@@ -11,6 +11,24 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/*
+/.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/.name
+.idea/.gitignore
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.idea/dictionaries
+.idea/gradle.xml
+.idea/inspectionProfiles
+.idea/scopes
+.idea/encodings.xml
+.idea/misc.xml
+.idea/runConfigurations
+.idea/uiDesigner.xml
+
+# Sensitive or high-churn files:
 
 ### Eclipse ###
 .apt_generated
@@ -36,3 +54,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/.idea/sonarlint/
