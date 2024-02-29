@@ -8,6 +8,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+
+        <option value="$PROJECT_DIR$/post-service/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+
         <option value="$PROJECT_DIR$/../my-moments-master/my-moments-master/insta-media-service/pom.xml" />
         <option value="$PROJECT_DIR$/service/pom.xml" />
 
@@ -15,7 +19,10 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+
         <option value="$PROJECT_DIR$/../my-moments-master/my-moments-master/insta-media-service/pom.xml" />
+
       </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
