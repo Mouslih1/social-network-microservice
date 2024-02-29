@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/v1/users")
 public class UserController {
 
     @Autowired
     private IUserService userService;
+
     @GetMapping("/{userId}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId) {
         UserDTO userDTO = userService.getUserById(userId);

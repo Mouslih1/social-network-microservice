@@ -34,13 +34,11 @@ public class UserDTO {
     @NotBlank(message = "Last name cannot be blank")
     private String lastname;
 
-   // @NotBlank(message = "Date of Birth cannot be blank")
     @Past(message = "Date of Birth must be in the past")
     private Date dateOfBirth;
 
     @NotBlank(message = "Country cannot be blank")
     @Size(min =  2, max =  50, message = "Country name must be between  2 and  50 characters")
     private String country;
-
 
 }
