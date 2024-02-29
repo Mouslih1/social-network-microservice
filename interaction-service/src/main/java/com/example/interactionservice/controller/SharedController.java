@@ -1,6 +1,5 @@
 package com.example.interactionservice.controller;
 
-import com.example.interactionservice.dto.ReactionDto;
 import com.example.interactionservice.dto.SharedDto;
 import com.example.interactionservice.exception.Error;
 import com.example.interactionservice.service.IsharedService;

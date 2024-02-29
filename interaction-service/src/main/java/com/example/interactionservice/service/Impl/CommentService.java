@@ -51,14 +51,9 @@ public class CommentService implements IcommentService {
     public List<CommentDto> getAllCommentsByPostId(Long postId)
     {
         List<Comment> comments = icommentRepository.findByPostId(postId);
-        int countComments = getCountOfCommentsByPost(postId);
         return comments
                 .stream()
-                .map(comment -> {
-                    CommentDto commentDto = modelMapper.map(comment,CommentDto.class);
-                    commentDto.setCountComments(countComments);
-                    return commentDto;
-                })
+                .map(comment -> modelMapper.map(comment,CommentDto.class))
                 .toList();
     }
 

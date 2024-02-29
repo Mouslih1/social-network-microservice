@@ -30,9 +30,27 @@ public class InteractionService implements IinteractionService {
         List<CommentDto> comments = icommentService.getAllCommentsByPostId(postId);
         List<SharedDto> shareds = isharedService.getAllSharedByPostId(postId);
         List<ReactionDto> reactions = ireactionService.getAllReactionsByPostId(postId);
+        int countComments = icommentService.getCountOfCommentsByPost(postId);
+        int countShareds = isharedService.getCountSharedsOfPost(postId);
+        int countReactions = ireactionService.getCountReactionsOfPost(postId);
+        int countLikes = ireactionService.getLikeCountOfPost(postId);
+        int countLoves = ireactionService.getLoveCountOfPost(postId);
+        int countWows = ireactionService.getWowCountOfPost(postId);
+        int countAngry = ireactionService.getAngryCountOfPost(postId);
+        int countSad = ireactionService.getSadCountOfPost(postId);
+        int countHahah = ireactionService.getHahahCountOfPost(postId);
         interactionDto.setComments(comments);
         interactionDto.setShareds(shareds);
         interactionDto.setReactions(reactions);
+        interactionDto.setCountComments(countComments);
+        interactionDto.setCountShareds(countShareds);
+        interactionDto.setCountLikes(countLikes);
+        interactionDto.setCountAngry(countAngry);
+        interactionDto.setCountReactions(countReactions);
+        interactionDto.setCountHahah(countHahah);
+        interactionDto.setCountLoves(countLoves);
+        interactionDto.setCountSad(countSad);
+        interactionDto.setCountWow(countWows);
         return interactionDto;
     }
 }

@@ -16,12 +16,5 @@ public class ReactionDto {
     private Long postId;
     private Long userId;
     private ReactionType reactionType;
-    private int countReactions;
-    private int countLikes;
-    private int countLoves;
-    private int countSad;
-    private int countAngry;
-    private int countHahah;
-    private int countWow;
     private LocalDateTime createdAt;
 }

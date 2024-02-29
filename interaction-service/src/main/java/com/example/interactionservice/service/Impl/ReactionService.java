@@ -52,26 +52,9 @@ public class ReactionService implements IreactionService {
     public List<ReactionDto> getAllReactionsByPostId(Long postId)
     {
         List<Reaction> reactions = ireactionRepository.findByPostId(postId);
-        int countReactions = getCountReactionsOfPost(postId);
-        int countLikes = getLikeCountOfPost(postId);
-        int countLoves = getLoveCountOfPost(postId);
-        int countWows = getWowCountOfPost(postId);
-        int countAngry = getAngryCountOfPost(postId);
-        int countSad = getSadCountOfPost(postId);
-        int countHahah = getHahahCountOfPost(postId);
         return reactions
                 .stream()
-                .map(reaction -> {
-                    ReactionDto reactionDto = modelMapper.map(reaction, ReactionDto.class);
-                    reactionDto.setCountReactions(countReactions);
-                    reactionDto.setCountAngry(countAngry);
-                    reactionDto.setCountLoves(countLoves);
-                    reactionDto.setCountHahah(countHahah);
-                    reactionDto.setCountSad(countSad);
-                    reactionDto.setCountLikes(countLikes);
-                    reactionDto.setCountWow(countWows);
-                    return reactionDto;
-                })
+                .map(reaction ->modelMapper.map(reaction, ReactionDto.class))
                 .toList();
     }
 

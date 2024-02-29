@@ -1,7 +1,6 @@
 package com.example.interactionservice.controller;
 
 
-import com.example.interactionservice.dto.CommentDto;
 import com.example.interactionservice.dto.ReactionDto;
 import com.example.interactionservice.exception.Error;
 import com.example.interactionservice.service.IreactionService;

@@ -14,6 +14,5 @@ public class SharedDto {
     private Long id;
     private Long postId;
     private Long userId;
-    private int countShareds;
     private LocalDateTime sharedAt;
 }

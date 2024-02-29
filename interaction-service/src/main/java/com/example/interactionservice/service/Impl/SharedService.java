@@ -52,14 +52,9 @@ public class SharedService implements IsharedService {
     public List<SharedDto> getAllSharedByPostId(Long postId)
     {
         List<Shared> shareds = isharedRepository.findByPostId(postId);
-        int countShareds = getCountSharedsOfPost(postId);
         return shareds
                 .stream()
-                .map(shared -> {
-                    SharedDto sharedDto = modelMapper.map(shared, SharedDto.class);
-                    sharedDto.setCountShareds(countShareds);
-                    return sharedDto;
-                })
+                .map(shared ->modelMapper.map(shared, SharedDto.class))
                 .toList();
     }
 
