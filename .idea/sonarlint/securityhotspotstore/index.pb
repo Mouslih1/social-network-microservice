@@ -50,3 +50,5 @@ G
 User-service/.gitignore,d\1\d13ebf8671377bf16dd434fd862c0d8a431c756b
 D
 post-service/pom.xml,3\4\341a7e13ca190ef95773f75495bd68ec12af6db8
+G
+service-post/.gitignore,2\f\2f8575216b433487a1a8babe84dd90ef966974d5
