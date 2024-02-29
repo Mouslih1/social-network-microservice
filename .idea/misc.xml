@@ -8,7 +8,9 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+
         <option value="$PROJECT_DIR$/User-service/pom.xml" />
+
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
