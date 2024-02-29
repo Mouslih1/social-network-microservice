@@ -42,3 +42,9 @@ Mfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/config/Config.java,
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+D
+User-service/pom.xml,1\2\126c4627b80be79d6d527f61dab5c0188d2a8a13
+D
+post-service/HELP.md,a\e\ae5f15de7d7da96159cc15027b100e14bc90c745
+G
+User-service/.gitignore,d\1\d13ebf8671377bf16dd434fd862c0d8a431c756b

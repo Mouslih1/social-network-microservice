@@ -5,68 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4aec032-43e8-49ac-9ae5-ed3981e32060" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/media-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ChatGPTCopilotChannelManager.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/3/231accc3fc81a5b802eb70923a79f9acbbdf987e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/6/26a7c28212fca73f447fabc2cae9507602c92d7c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/8/28ba13bd21198eaa5952aec1ffd671a042e58e89" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/f/2f578c22f52425f0ee0298fed7b777bf519600d0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/b/5b7c33a5d54180c5fc66212c17e7d6e7c0071751" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/c/5cd23e51a0a5fb109e0e102d25a342997760939e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/64e43940e9636675ad8437f97ba33e438dd39dcd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/0/70d511ca91d9595e0e2fe1ccc8fd5796983dff74" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/1/a1f4042fbcf78e2ab86d486176a2378cd0a26e9a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/9/a9a859257042d76775aa45f5e89554f8fdba70a8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/c/dc70fb465825e5e5cb51f5f31071ae408e8287cd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/f/df1129b760322f688114d679aabaa4f5c44860e0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/4/f43eec67d1844c3070d234bab57d8da09e761121" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/a/fa5f7b6467199f32b7df63f3c159dcc64b94b811" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/3/231accc3fc81a5b802eb70923a79f9acbbdf987e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/6/26a7c28212fca73f447fabc2cae9507602c92d7c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/8/28ba13bd21198eaa5952aec1ffd671a042e58e89" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/f/2f578c22f52425f0ee0298fed7b777bf519600d0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/b/5b7c33a5d54180c5fc66212c17e7d6e7c0071751" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/c/5cd23e51a0a5fb109e0e102d25a342997760939e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/4/64e43940e9636675ad8437f97ba33e438dd39dcd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/0/70d511ca91d9595e0e2fe1ccc8fd5796983dff74" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/1/a1f4042fbcf78e2ab86d486176a2378cd0a26e9a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/9/a9a859257042d76775aa45f5e89554f8fdba70a8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/c/dc70fb465825e5e5cb51f5f31071ae408e8287cd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/f/df1129b760322f688114d679aabaa4f5c44860e0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/4/f43eec67d1844c3070d234bab57d8da09e761121" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/a/fa5f7b6467199f32b7df63f3c159dcc64b94b811" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/User-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/User-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/User-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interaction-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/interaction-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/ServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/main/java/com/media/service/ServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/main/java/com/media/service/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/config/OpenAPIConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/controller/MediaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/main/java/com/media/service/controller/MediaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/dto/MediaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/main/java/com/media/service/dto/MediaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/model/Media.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/main/java/com/media/service/model/Media.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/repository/MediaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/main/java/com/media/service/repository/MediaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/service/MediaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/main/java/com/media/service/service/MediaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/media/service/service/impl/MediaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/main/java/com/media/service/service/impl/MediaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/media/service/ServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/test/java/com/media/service/ServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/test/java/com/media/service/service/impl/MediaServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/media-service/src/test/java/com/media/service/service/impl/MediaServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post-service" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,61 +36,64 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2cu5gDNMeKasPO0TfLJJ29MCTOr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.UserServiceApplication.executor": "Run",
-    "JUnit.CommentControllerTest.deleteComment.executor": "Run",
-    "JUnit.CommentControllerTest.getAllComments.executor": "Run",
-    "JUnit.CommentControllerTest.getByIdComment.executor": "Run",
-    "JUnit.CommentControllerTest.getCommentsByPost.executor": "Run",
-    "JUnit.CommentControllerTest.saveComment.executor": "Run",
-    "JUnit.CommentControllerTest.updateComment.executor": "Run",
-    "JUnit.CommentServiceTest.deleteComment.executor": "Run",
-    "JUnit.CommentServiceTest.getAllComments.executor": "Run",
-    "JUnit.CommentServiceTest.getByIdComment.executor": "Run",
-    "JUnit.CommentServiceTest.getCommentsByPost.executor": "Run",
-    "JUnit.CommentServiceTest.saveComment.executor": "Run",
-    "JUnit.CommentServiceTest.updateComment.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.User-service [clean].executor": "Run",
-    "Maven.User-service [install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.InteractionServiceApplication.executor": "Run",
-    "Spring Boot.ServiceApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "17",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/maro/IdeaProjects/social-network-microservice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentControllerTest.deleteComment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentControllerTest.getAllComments.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentControllerTest.getByIdComment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentControllerTest.getCommentsByPost.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentControllerTest.saveComment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentControllerTest.updateComment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentServiceTest.deleteComment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentServiceTest.getAllComments.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentServiceTest.getByIdComment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentServiceTest.getCommentsByPost.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentServiceTest.saveComment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CommentServiceTest.updateComment.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.User-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.User-service [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.InteractionServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/maro/IdeaProjects/social-network-microservice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql_aurora_aws",
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql_aurora_aws&quot;,
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -252,6 +196,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FeedsServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="feeds-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.nabilaitnacer.feedsservice.FeedsServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="InteractionServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="interaction-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.interactionservice.InteractionServiceApplication" />
@@ -260,7 +211,7 @@
       </method>
     </configuration>
     <configuration name="ServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="media-service" />
+      <module name="service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.media.service.ServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />

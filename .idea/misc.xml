@@ -2,22 +2,16 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
-
     <file type="web" url="file://$PROJECT_DIR$/feed-service" />
-
     <file type="web" url="file://$PROJECT_DIR$/User-service" />
-
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-
         <option value="$PROJECT_DIR$/feeds-service/pom.xml" />
-
         <option value="$PROJECT_DIR$/post-service/pom.xml" />
         <option value="$PROJECT_DIR$/demo/pom.xml" />
-
         <option value="$PROJECT_DIR$/../my-moments-master/my-moments-master/insta-media-service/pom.xml" />
         <option value="$PROJECT_DIR$/service/pom.xml" />
         <option value="$PROJECT_DIR$/User-service/pom.xml" />
@@ -27,10 +21,8 @@
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/demo/pom.xml" />
-
         <option value="$PROJECT_DIR$/../my-moments-master/my-moments-master/insta-media-service/pom.xml" />
-
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
       </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
