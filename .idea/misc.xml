@@ -10,7 +10,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../my-moments-master/my-moments-master/insta-media-service/pom.xml" />
         <option value="$PROJECT_DIR$/service/pom.xml" />
-
+        <option value="$PROJECT_DIR$/User-service/pom.xml" />
+        <option value="$PROJECT_DIR$/interaction-service/pom.xml" />
+        <option value="$PROJECT_DIR$/media-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

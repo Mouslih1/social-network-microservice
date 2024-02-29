@@ -1,9 +1,0 @@
-
-l
-java:S3655F"JCall "media.isPresent()" or "!media.isEmpty()" before accessing the value.(öµÅıÿÿÿÿ8´ê¨ß1
-a
-java:S2583M"DChange this condition so that it does not always evaluate to "false"(ÀôëÚ8µê¨ß1
-G	java:S106C"+Replace this use of System.out by a logger.(àšùé8Ïê¨ß1
-8
-java:S3626d"Remove this redundant jump.(ûÁİ…8Ùê¨ß1
-G	java:S106["+Replace this use of System.out by a logger.(ÙşÑ©8úê¨ß1
