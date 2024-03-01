@@ -1,0 +1,20 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: users
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/friends
+    username: postgres
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  cloud:
+    config:
+      enabled: false
