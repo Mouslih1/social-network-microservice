@@ -2,79 +2,62 @@
 package com.halima.userservice.service.implementations;
 
 import com.halima.userservice.dto.UserDTO;
+import com.halima.userservice.exception.NotFoundException;
 import com.halima.userservice.model.User;
 import com.halima.userservice.repository.UserRepository;
 import com.halima.userservice.service.interfaces.IUserService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class UserService implements IUserService {
-    @Autowired
-    private ModelMapper modelMapper;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserDTO convertToDTO(User user) {
+    private static final String USER_NOT_FOUND = "User not found with this id : ";
+
+    @Override
+    public UserDTO update(Long id, UserDTO userDTO) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND + id));
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+        user.setCountry(userDTO.getCountry());
+        user.setDateOfBirth(userDTO.getDateOfBirth());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setLastname(userDTO.getLastname());
+        user.setFirstname(userDTO.getFirstname());
+        User userUpdated = userRepository.save(user);
+        return modelMapper.map(userUpdated, UserDTO.class);
+    }
+
+    @Override
+    public UserDTO getById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND + id));
         return modelMapper.map(user, UserDTO.class);
     }
 
-    public User convertToEntity(UserDTO userDTO) {
-        return modelMapper.map(userDTO, User.class);
-    }
     @Override
-    @Transactional
-    public UserDTO getUserById(Long userId) {
-        User user = userRepository.findById(userId).orElse(null);
-        return convertToDTO(user);
-    }
-   @Override
-   @Transactional
-   public List<UserDTO> getAllUsers() {
+    public List<UserDTO> getAll() {
         List<User> users = userRepository.findAll();
-        return users.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-    }
-    @Override
-    @Transactional
-    public UserDTO saveUser(UserDTO userDTO) {
-        User user = convertToEntity(userDTO);
-        userRepository.save(user);
-        return userDTO;
+        return users
+                .stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .toList();
     }
 
 
     @Override
-    @Transactional
-    public UserDTO updateUser(UserDTO userDTO) {
-        try {
-            Optional<User> utilisateur = userRepository.findById(userDTO.getId());
-            if (utilisateur.isPresent()) {
-                modelMapper.map(userDTO, utilisateur.get());
-               userRepository.save(utilisateur.get());
-                return convertToDTO(utilisateur.get());
-            }
-            return null;
-        } catch (Exception e) {
-            throw new RuntimeException("Error updating utilisateur", e);
-        }
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
-    @Override
-    @Transactional
-    public void deleteUser(Long userId) {
-        try {
-            userRepository.deleteById(userId);
-        } catch (Exception e) {
-            throw new RuntimeException("Error deleting utilisateur", e);
-        }
-    }
-
 }

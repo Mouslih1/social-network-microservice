@@ -1,4 +1,3 @@
-// MediaController.java
 package com.media.service.controller;
 
 import com.media.service.dto.MediaDTO;
@@ -13,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("api/v1/medias")
+@RequestMapping("/api/v1/medias")
 public class MediaController {
 
     @Autowired
@@ -28,13 +27,15 @@ public class MediaController {
 
 
     @DeleteMapping("/post/{postId}")
-    public ResponseEntity<Void> deleteMedia(@PathVariable("postId") Long postId) throws IOException {
+    public ResponseEntity<Void> deleteMedia(@PathVariable("postId") Long postId) throws IOException
+    {
         mediaService.deleteMedia(postId);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/post/{postId}")
-    public ResponseEntity<MediaDTO> getMediaByPostId(@PathVariable("postId") Long postId) {
+    public ResponseEntity<MediaDTO> getMediaByPostId(@PathVariable("postId") Long postId)
+    {
         MediaDTO media = mediaService.getMediaByPostId(postId);
         return ResponseEntity.ok(media);
     }

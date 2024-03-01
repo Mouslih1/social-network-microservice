@@ -2,24 +2,27 @@ package com.example.interactionservice.controller;
 
 import com.example.interactionservice.dto.CommentDto;
 import com.example.interactionservice.service.IcommentService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.interactionservice.exception.Error;
 
+import java.util.Enumeration;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/comments")
+@RequestMapping("/api/v1/comments")
 public class CommentController {
 
     private final IcommentService icommentService;
 
     @PostMapping("/post/{postId}")
-    public ResponseEntity<CommentDto> save(@PathVariable Long postId,@RequestBody CommentDto comment)
+    public ResponseEntity<CommentDto> save(@PathVariable Long postId, @RequestBody CommentDto comment,@RequestHeader("id") String id)
     {
+        System.out.println("id =========== 1 " + id);
         return new ResponseEntity<>(icommentService.save(postId, comment), HttpStatus.CREATED);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/shareds")
+@RequestMapping("/api/v1/shareds")
 public class SharedController {
 
     private final IsharedService isharedService;
