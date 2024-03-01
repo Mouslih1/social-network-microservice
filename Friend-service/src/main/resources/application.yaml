@@ -1,20 +1,25 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
 server:
-  port: 8084
+  port: 8070
 spring:
   application:
-    name: users
+    name: interactions
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/friends
+    url: jdbc:postgresql://localhost:5432/social-networks
     username: postgres
-    password: 123456
+    password: 1111
   jpa:
     hibernate:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-
   cloud:
     config:
       enabled: false

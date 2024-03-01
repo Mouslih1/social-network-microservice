@@ -1,8 +1,9 @@
 package com.halima.userservice.controller;
 
 import com.halima.userservice.dto.UserDTO;
+import com.halima.userservice.exception.Error;
 import com.halima.userservice.service.interfaces.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,48 +11,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private IUserService userService;
+    private final IUserService userService;
+
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId) {
-        UserDTO userDTO = userService.getUserById(userId);
-        if (userDTO != null) {
-            return ResponseEntity.ok(userDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId)
+    {
+        return new ResponseEntity<>(userService.getById(userId), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> userDTOList = userService.getAllUsers();
-        return ResponseEntity.ok(userDTOList);
-    }
-
-    @PostMapping
-    public ResponseEntity<Void> createUser(@RequestBody UserDTO userDTO) {
-        userService.saveUser(userDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<List<UserDTO>> getAllUsers()
+    {
+        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @RequestBody UserDTO userDTO) {
-        userDTO.setId(userId);
-        UserDTO updatedUserDTO = userService.updateUser(userDTO);
-        if (updatedUserDTO != null) {
-            return ResponseEntity.ok(updatedUserDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @RequestBody UserDTO userDTO)
+    {
+        return new ResponseEntity<>(userService.update(userId, userDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-        userService.deleteUser(userId);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Error> deleteUser(@PathVariable Long userId)
+    {
+        Error error = new Error("User deleted successfully.");
+        userService.delete(userId);
+        return new ResponseEntity<>(error, HttpStatus.OK);
     }
-
 }

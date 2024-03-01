@@ -1,20 +1,17 @@
 package com.halima.userservice.service.interfaces;
 
 import com.halima.userservice.dto.UserDTO;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface IUserService {
 
-    UserDTO getUserById(Long userId);
+    UserDTO getById(Long userId);
 
-    List<UserDTO> getAllUsers();
+    List<UserDTO> getAll();
 
-    UserDTO saveUser(UserDTO userDTO);
+    UserDTO update(Long id,UserDTO userDTO);
 
-    UserDTO updateUser(UserDTO userDTO);
+    void delete(Long userId);
 
-    @Transactional
-    void deleteUser(Long userId);
 }
