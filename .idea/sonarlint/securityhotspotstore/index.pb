@@ -49,3 +49,13 @@ MFriend-service/src/main/java/com/halima/friendservice/model/enums/Status.java,
 PFriend-service/src/main/java/com/halima/friendservice/model/entities/Friend.java,7\c\7c93ffea40c398360abecc66533379187ddfd2fa
 x
 HFriend-service/src/main/java/com/halima/friendservice/dto/FriendDto.java,1\2\127e1acea804c5a9a4b9837e440f7cbf7126dbcb
+ç
+]Friend-service/src/main/java/com/halima/friendservice/repository/FriendRequestRepository.java,1\a\1a3e1c3f57fe6dc0ec1637b8c70dc5db540cd36a
+Ü
+VFriend-service/src/main/java/com/halima/friendservice/repository/FriendRepository.java,1\6\16cd5751ec9c5f61ca6d7556b976e4c0fd770a7b
+
+OFriend-service/src/main/java/com/halima/friendservice/openfeign/UserClient.java,d\f\df8e89091c461cc56875ce5f3853030cc077c0e3
+Ü
+VUser-service/src/main/java/com/halima/userservice/service/interfaces/IUserService.java,f\6\f6ff2b4d3657c833e46d17860d54d2e0be7cf7ad
+ä
+ZUser-service/src/main/java/com/halima/userservice/service/implementations/UserService.java,c\4\c496ee122f4768a8d80d0f3662a7d779fa7aa18f

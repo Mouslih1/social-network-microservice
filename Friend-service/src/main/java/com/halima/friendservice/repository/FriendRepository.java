@@ -8,6 +8,5 @@ import java.util.Collection;
 
 public interface FriendRepository extends JpaRepository<Friend, Long> {
 
-    Collection<Object> findAllByUserIdSender(Long userId);
 
 }
