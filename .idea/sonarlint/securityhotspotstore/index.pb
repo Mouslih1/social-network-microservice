@@ -59,3 +59,15 @@ OFriend-service/src/main/java/com/halima/friendservice/openfeign/UserClient.java
 VUser-service/src/main/java/com/halima/userservice/service/interfaces/IUserService.java,f\6\f6ff2b4d3657c833e46d17860d54d2e0be7cf7ad
 Š
 ZUser-service/src/main/java/com/halima/userservice/service/implementations/UserService.java,c\4\c496ee122f4768a8d80d0f3662a7d779fa7aa18f
+Š
+ZFriend-service/src/main/java/com/halima/friendservice/exception/UserNotFoundException.java,4\d\4df1581029b9f41b77da5af06e6e97177e97868f
+‹
+[Friend-service/src/main/java/com/halima/friendservice/exception/GlobalExceptionHandler.java,e\5\e5f54246f384c3a575a8520c42584adfa57a9ecd
+{
+KFriend-service/src/main/java/com/halima/friendservice/config/AppConfig.java,f\1\f1476dc61c2e4e59e9eedf5f2e9bbeba53380d36
+D
+service-post/pom.xml,d\0\d01c8ffe84c78df179d69d17872295a003c8ee77
+?
+geteway/pom.xml,9\d\9dde3f1bba98833a1ec468be2c6152c2c5ad946e
+‹
+[Friend-service/src/main/java/com/halima/friendservice/exception/FriendRequestException.java,d\0\d0311d3715cc864c636793657fa4ace8fa7a8539
