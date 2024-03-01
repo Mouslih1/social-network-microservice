@@ -75,3 +75,5 @@ w
 Gdiscovery/src/main/java/com/example/discovery/DiscoveryApplication.java,f\5\f58f3940e85d9bffb5cf4068eba76276df036e8c
 ‚
 RFriend-service/src/main/java/com/halima/friendservice/aop/FriendRequestAspect.java,f\5\f509b71cbcb78a1eafc8bd2ba016e39a2161d8b8
+~
+Ngeteway/src/main/java/com/exemple/geteway/exception/UserNotFoundException.java,5\d\5d7abec3c56deec031c69081b46b57b31ba15ff4

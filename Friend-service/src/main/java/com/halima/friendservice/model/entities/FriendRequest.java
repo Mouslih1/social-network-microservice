@@ -15,22 +15,15 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class FriendRequest {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private Long userIdSender;
-        private Long friendId;
-        private Status status = Status.PENDING;
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long userIdSender;
+    private Long friendId;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-        @PrePersist
-        protected void onCreate() {
-                createdAt = LocalDateTime.now();
-        }
 
-        @PreUpdate
-        protected void onUpdate() {
-                updatedAt = LocalDateTime.now();
-        }
 }

@@ -44,7 +44,14 @@ public class FriendRequestController {
 
     @PutMapping("/{requestId}/reject")
     public ResponseEntity<FriendRequestDto> rejectFriendRequest(@RequestHeader("id") String userId, @PathVariable Long requestId) {
+        log.info("Rejecting friend request with id {}", requestId);
         return ResponseEntity.ok(friendRequestService.rejectFriendRequest(Long.parseLong(userId),requestId));
+    }
+    @DeleteMapping("/{requestId}")
+    public ResponseEntity<Void> deleteFriendRequest(@RequestHeader("id") String userId, @PathVariable Long requestId) {
+        log.info("Deleting friend request with id {}", requestId);
+        friendRequestService.deleteFriendRequest(Long.parseLong(userId),requestId);
+        return ResponseEntity.noContent().build();
     }
 
 }

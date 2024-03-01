@@ -6,6 +6,7 @@ import com.halima.friendservice.model.entities.FriendRequest;
 import com.halima.friendservice.openfeign.UserClient;
 import com.halima.friendservice.service.FriendRequestService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -18,26 +19,42 @@ import java.util.Optional;
 @Aspect
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class FriendRequestAspect {
 
     private final FriendRequestService friendRequestService;
     private final UserClient userClient;
-    @Before("execution(* com.halima.friendservice.service.*.*(..))")
+    @Before("execution(* com.halima.friendservice.service.*.*(..))" +
+            " && !execution(* com.halima.friendservice.service.FriendRequestService.getFriendRequest(..))"
+    + " && !execution(* com.halima.friendservice.service.FriendRequestService.rejectFriendRequest(..))"
+      + " && !execution(* com.halima.friendservice.service.FriendRequestService.acceptFriendRequest(..))"
+    )
     public void beforeAnyMethod(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
+
         Long loggedInUserId = (Long) args[0];
-        Long senderId = (Long) args[1];
-        if (!userClient.userExists(senderId)) {
-            throwUserNotFoundException(senderId);
+        Long senderId = null;
+        log.info("loggedInUserId: {}", loggedInUserId);
+        if(args.length > 1){
+             senderId = (Long) args[1];
+            if (!userClient.userExists(senderId)) {
+                throwUserNotFoundException(senderId);
+            }
+            log.info("senderId: {}", senderId);
         }
+
+
+
 
         Optional<FriendRequest> request = friendRequestService.getFriendRequest(loggedInUserId, senderId);
 
-        if( request.isPresent() && !Objects.equals(request.get().getUserIdSender(), loggedInUserId)){
+        if( request.isPresent()  && !Objects.equals(request.get().getUserIdSender(), loggedInUserId)){
             throwFriendRequestException("Vous n'êtes pas autorisé à accepter cette demande");
         }
-        checkIfUserIsSendingRequestToSelf(loggedInUserId, senderId);
-        checkFriendRequestStatusAndThrowException(request);
+         checkIfUserIsSendingRequestToSelf(loggedInUserId, senderId);
+
+
+
     }
     private void throwUserNotFoundException(Long friendId) {
         throw new UserNotFoundException(String.format("User with id %s does not exist", friendId));
@@ -46,24 +63,7 @@ public class FriendRequestAspect {
         throw new FriendRequestException(message);
     }
 
-    public void checkFriendRequestStatusAndThrowException(Optional<FriendRequest> request) {
-        if(request.isPresent()){
-            switch (request.get().getStatus()) {
-                case ACCEPTED:
-                    throwFriendRequestException("Vous êtes déjà amis");
-                    break;
-                case PENDING:
-                    throwFriendRequestException("Demande d'amis déjà envoyée");
-                    break;
-                case REJECTED:
-                    throwFriendRequestException("Demande d'amis Rejected");
-                    break;
-                default:
-                    throwFriendRequestException("Demande d'amis n'existe pas");
-                    break;
-            }
-        }
-    }
+
     public void checkIfUserIsSendingRequestToSelf(Long loggedInUserId, Long senderId) {
         if (loggedInUserId.equals(senderId)) {
             throwFriendRequestException("Vous ne pouvez pas envoyer une demande à vous-même");

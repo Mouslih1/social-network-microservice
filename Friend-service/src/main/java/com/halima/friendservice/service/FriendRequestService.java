@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -35,19 +36,19 @@ public class FriendRequestService {
 
     public FriendRequestDto createFriendRequest(Long userIdSender, Long friendId) {
         log.info("Creating friend request for user {} and friend {}", userIdSender, friendId);
-
-        Optional<FriendRequest> request = getFriendRequest(userIdSender, friendId);
         FriendRequest friendRequest = FriendRequest.builder()
                 .userIdSender(userIdSender)
                 .friendId(friendId)
+                .createdAt(LocalDateTime.now())
+                .status(Status.PENDING)
+                .updatedAt(LocalDateTime.now())
                 .build();
         //TODO Send Notification to the user
         return modelMapper.map(friendRequestRepository.save(friendRequest), FriendRequestDto.class);
     }
 
     public Optional<FriendRequest> getFriendRequest(Long userIdSender, Long friendId) {
-        Optional<FriendRequest> request = friendRequestRepository.findByUserIdSenderAndFriendId(userIdSender, friendId);
-        return request;
+        return friendRequestRepository.findByUserIdSenderAndFriendId(userIdSender, friendId);
     }
 
 
@@ -58,6 +59,7 @@ public class FriendRequestService {
         Optional<FriendRequest> friendRequest = getFriendRequest(userId, requestId);
 
         friendRequest.get().setStatus(Status.ACCEPTED);
+        friendRequest.get().setUpdatedAt(LocalDateTime.now());
         Friend friend = Friend.builder()
                 .userIdSender(friendRequest.get().getUserIdSender())
                 .friendId(friendRequest.get().getFriendId())
@@ -65,13 +67,14 @@ public class FriendRequestService {
         friendRepository.save(friend);
         friendRequestRepository.save(friendRequest.get());
 
-        return modelMapper.map(friendRequest, FriendRequestDto.class);
+        return modelMapper.map(friendRequest.get(), FriendRequestDto.class);
     }
 
     public FriendRequestDto rejectFriendRequest(Long userId, Long requestId) {
         log.info("Rejecting friend request with id {}", requestId);
         Optional<FriendRequest> friendRequest = friendRequestRepository.findById(requestId);
         friendRequest.get().setStatus(Status.REJECTED);
+        friendRequest.get().setUpdatedAt(LocalDateTime.now());
         return  modelMapper.map(friendRequestRepository.save(friendRequest.get()), FriendRequestDto.class);
     }
 
@@ -84,7 +87,30 @@ public class FriendRequestService {
         log.info("Getting all friend request for user with id {} and status {}", idSender, status);
         return friendRequestRepository.findByUserIdSenderAndStatus(idSender, status).stream().map(element -> modelMapper.map(element, FriendRequestDto.class)).toList();
     }
-
-
+    public void deleteFriendRequest(Long userId,Long requestId){
+        log.info("Deleting friend request with id {}", requestId);
+        friendRequestRepository.deleteById(requestId);
+    }
+    public void checkFriendRequestStatusAndThrowException(Optional<FriendRequest> request) {
+        if(request.isPresent()){
+            switch (request.get().getStatus()) {
+                case ACCEPTED:
+                    throwFriendRequestException("Vous êtes déjà amis");
+                    break;
+                case PENDING:
+                    throwFriendRequestException("Demande d'amis déjà envoyée");
+                    break;
+                case REJECTED:
+                    throwFriendRequestException("Demande d'amis Rejected");
+                    break;
+                default:
+                    throwFriendRequestException("Demande d'amis n'existe pas");
+                    break;
+            }
+        }
+    }
+    private void throwFriendRequestException(String message) {
+        throw new FriendRequestException(message);
+    }
 
 }
