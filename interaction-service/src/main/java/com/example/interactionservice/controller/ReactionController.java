@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/reactions")
+@RequestMapping("/api/v1/reactions")
 public class ReactionController {
 
     private final IreactionService ireactionService;
