@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.time.LocalDateTime;
 
@@ -13,13 +12,15 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostEnntity {
+public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String body;
+
     private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
     private Long userId;
     private boolean isDeleted;

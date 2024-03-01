@@ -1,13 +1,13 @@
 server:
-  port: 8070
+  port: 8071
 spring:
   application:
-    name: post-service
+    name: interactions
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postdb
+    url: jdbc:postgresql://localhost:5432/social-networks
     username: postgres
-    password: root
+    password: 1111
   jpa:
     hibernate:
       ddl-auto: update
