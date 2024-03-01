@@ -1,10 +1,8 @@
-// MediaController.java
 package com.media.service.controller;
 
 import com.media.service.dto.MediaDTO;
 import com.media.service.service.impl.MediaServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
