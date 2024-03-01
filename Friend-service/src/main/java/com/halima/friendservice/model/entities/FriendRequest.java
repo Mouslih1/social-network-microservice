@@ -1,8 +1,10 @@
 package com.halima.friendservice.model.entities;
 
+import com.halima.friendservice.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,7 +20,9 @@ public class FriendRequest {
         private Long id;
         private Long userIdSender;
         private Long friendId;
-        private String status = "PENDING";
-        private Date createdAt;
+        private Status status = Status.PENDING;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+
 
 }

@@ -22,8 +22,8 @@ public class FriendRequestController {
     }
 
 
-    @PostMapping
-    public FriendRequest createFriendRequest(@RequestHeader("id") String userId, @RequestParam Long friendId) {
+    @PostMapping("/user/{userId}")
+    public FriendRequest createFriendRequest(@RequestHeader("id") String userId, @PathVariable Long friendId    ) {
         return friendRequestService.createFriendRequest(userId, friendId);
     }
 
