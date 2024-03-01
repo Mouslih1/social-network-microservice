@@ -88,6 +88,10 @@ public class FriendRequestService {
 
         return modelMapper.map(friendRequest.get(), FriendRequestDto.class);
     }
+    public List<FriendRequestDto> getAllFriendRequestByIdReceiver(Long idReceiver) {
+        log.info("Getting all friend request for user with id {}", idReceiver);
+        return friendRequestRepository.findByFriendId(idReceiver).stream().map(element -> modelMapper.map(element, FriendRequestDto.class)).toList();
+    }
 
     public FriendRequestDto rejectFriendRequest(Long userId, Long requestId) {
         log.info("Rejecting friend request with id {}", requestId);

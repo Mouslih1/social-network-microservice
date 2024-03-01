@@ -21,10 +21,14 @@ public class FriendRequestController {
 
     @Autowired
     private FriendRequestService friendRequestService;
-    @GetMapping("/all")
+    @GetMapping("/send")
     public ResponseEntity<List<FriendRequestDto>> getAllFriendRequest(@RequestHeader("id") String userId) {
         return ResponseEntity.ok(friendRequestService.getAllFriendRequestByIdSender(Long.parseLong(userId)));
 
+    }
+    @GetMapping("/received")
+    public ResponseEntity<List<FriendRequestDto>> getAllFriendRequestReceived(@RequestHeader("id") String userId) {
+        return ResponseEntity.ok(friendRequestService.getAllFriendRequestByIdReceiver(Long.parseLong(userId)));
     }
 
     @GetMapping("/all/status")
