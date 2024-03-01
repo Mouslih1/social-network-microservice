@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -59,27 +60,24 @@ public class MediaServiceImpl  implements MediaService {
 
 
     @Override
-    public MediaDTO getMediaByPostId(Long postId) {
-        System.out.println(mediaRepository.findMediaByPostId(postId));
-        Optional<Media> media = mediaRepository.findMediaByPostId(postId);
-        MediaDTO mediaDTO = new MediaDTO();
-        mediaDTO.setPostId(media.get().getPostId());
-        mediaDTO.setPathImage(media.get().getPathImage());
-        mediaDTO.setName(media.get().getName());
-        mediaDTO.setType(media.get().getType());
-        mediaDTO.setSize(media.get().getSize());
-        mediaDTO.setCreatedDate(media.get().getCreatedDate());
-
-        if (mediaDTO == null) {
-            return null;
+    public List<MediaDTO> getMediaByPostId(Long postId) {
+        List<Media> mediaList = mediaRepository.findMediaByPostId(postId);
+        if (mediaList.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Media not found");
+        } else {
+            return mediaList.stream().map(media -> modelMapper.map(media, MediaDTO.class)).toList();
         }
-        return mediaDTO;
+
+    }
+
+    @Override
+    public void deleteMedia(Long id) throws Exception {
+
     }
 
     @Transactional
-    @Override
-    public void deleteMedia(Long postId) {
-        Optional<Media> mediaOptional = mediaRepository.findMediaByPostId(postId);
+    public void deleteMedia(Long postId,Long id) {
+        Optional<Media> mediaOptional = mediaRepository.findByIdAndPostId(postId, id);
         if (mediaOptional.isPresent()) {
             mediaRepository.deleteByPostId(postId);
             String path = mediaOptional.get().getPathImage();

@@ -30,7 +30,7 @@ target/
 
 # Sensitive or high-churn files:
 
-.idea/
+.idea
 
 
 ### Eclipse ###
