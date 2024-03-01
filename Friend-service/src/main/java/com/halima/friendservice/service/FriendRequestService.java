@@ -43,7 +43,7 @@ public class FriendRequestService {
         if(friendRepository.existsByUserIdAndFriendId(userIdSender, friendId))  throwFriendRequestException("Vous êtes déjà amis");
         checkIfUserIsSendingRequestToSelf(userIdSender, friendId);
         checkFriendRequestStatusAndThrowException(getFriendRequest(userIdSender, friendId));
-
+        if(friendRequestRepository.findByFriendIdAndUserIdSender(userIdSender, friendId).isPresent()) throwFriendRequestException("Demande d'amis déjà envoyée");
         FriendRequest friendRequest = FriendRequest.builder()
                 .userIdSender(userIdSender)
                 .friendId(friendId)
@@ -55,9 +55,9 @@ public class FriendRequestService {
         return modelMapper.map(friendRequestRepository.save(friendRequest), FriendRequestDto.class);
     }
 
-    public Optional<FriendRequest> getFriendRequest(Long userIdSender, Long friendId) {
-        log.info("Getting friend request for user {} and friend {}", userIdSender, friendId);
-        return friendRequestRepository.findByUserIdSenderAndId(userIdSender, friendId);
+    public Optional<FriendRequest> getFriendRequest(Long userId, Long requestId) {
+        log.info("Getting friend request for user {} and friend {}", userId, requestId);
+        return friendRequestRepository.findByFriendIdAndAndId(userId, requestId);
     }
 
 
@@ -68,20 +68,19 @@ public class FriendRequestService {
         Optional<FriendRequest> friendRequest = getFriendRequest(userId, requestId);
         log.info("Optional Status friend request with id {}", friendRequest.isPresent());
 
-        if(!userClient.userExists(friendRequest.get().getFriendId())) throwUserNotFoundException(friendRequest.get().getFriendId());
+        if(!userClient.userExists(friendRequest.get().getUserIdSender())) throwUserNotFoundException(friendRequest.get().getFriendId());
         log.info("UserClien Status friend request with id {}", requestId);
 
-        checkIfUserIsSendingRequestToSelf(userId, friendRequest.get().getFriendId());
-        log.info("Self Status friend request with id {}", requestId);
 
-        if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getFriendId()))  throwFriendRequestException("Vous êtes déjà amis");
 
+        if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getUserIdSender()))  throwFriendRequestException("Vous êtes déjà amis");
+        log.info("FriendRepository Status friend request with id {}", requestId);
         if(!Objects.equals(userId, friendRequest.get().getFriendId())) throwFriendRequestException("Vous ne pouvez pas accepter une demande d'amis qui ne vous est pas destinée");
         friendRequest.get().setStatus(Status.ACCEPTED);
         friendRequest.get().setUpdatedAt(LocalDateTime.now());
         Friend friend = Friend.builder()
-                .userId(friendRequest.get().getUserIdSender())
-                .friendId(friendRequest.get().getFriendId())
+                .userId(userId)
+                .friendId(friendRequest.get().getUserIdSender())
                 .build();
         friendRepository.save(friend);
         friendRequestRepository.save(friendRequest.get());
