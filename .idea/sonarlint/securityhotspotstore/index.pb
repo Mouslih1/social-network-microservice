@@ -71,3 +71,7 @@ D
 geteway/pom.xml,9\d\9dde3f1bba98833a1ec468be2c6152c2c5ad946e
 ‹
 [Friend-service/src/main/java/com/halima/friendservice/exception/FriendRequestException.java,d\0\d0311d3715cc864c636793657fa4ace8fa7a8539
+w
+Gdiscovery/src/main/java/com/example/discovery/DiscoveryApplication.java,f\5\f58f3940e85d9bffb5cf4068eba76276df036e8c
+‚
+RFriend-service/src/main/java/com/halima/friendservice/aop/FriendRequestAspect.java,f\5\f509b71cbcb78a1eafc8bd2ba016e39a2161d8b8

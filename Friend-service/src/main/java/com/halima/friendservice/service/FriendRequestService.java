@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,17 +30,13 @@ public class FriendRequestService {
     private final FriendRequestRepository friendRequestRepository;
 
     private final FriendRepository friendRepository;
-    private final UserClient userClient;
+
+
 
     public FriendRequestDto createFriendRequest(Long userIdSender, Long friendId) {
         log.info("Creating friend request for user {} and friend {}", userIdSender, friendId);
 
-        if (!userClient.userExists(friendId)) {
-            throwUserNotFoundException(friendId);
-        }
-        Optional<FriendRequest> request = friendRequestRepository.findByUserIdSenderAndFriendId(userIdSender, friendId);
-        checkFriendRequestStatusAndThrowException(request);
-
+        Optional<FriendRequest> request = getFriendRequest(userIdSender, friendId);
         FriendRequest friendRequest = FriendRequest.builder()
                 .userIdSender(userIdSender)
                 .friendId(friendId)
@@ -48,14 +45,18 @@ public class FriendRequestService {
         return modelMapper.map(friendRequestRepository.save(friendRequest), FriendRequestDto.class);
     }
 
+    public Optional<FriendRequest> getFriendRequest(Long userIdSender, Long friendId) {
+        Optional<FriendRequest> request = friendRequestRepository.findByUserIdSenderAndFriendId(userIdSender, friendId);
+        return request;
+    }
 
 
     @Transactional
-    public FriendRequestDto acceptFriendRequest(Long requestId) {
+    public FriendRequestDto acceptFriendRequest(Long userId, Long requestId) {
         log.info("Accepting friend request with id {}", requestId);
 
-        Optional<FriendRequest> friendRequest = friendRequestRepository.findById(requestId);
-        checkFriendRequestStatusAndThrowException(friendRequest);
+        Optional<FriendRequest> friendRequest = getFriendRequest(userId, requestId);
+
         friendRequest.get().setStatus(Status.ACCEPTED);
         Friend friend = Friend.builder()
                 .userIdSender(friendRequest.get().getUserIdSender())
@@ -67,36 +68,23 @@ public class FriendRequestService {
         return modelMapper.map(friendRequest, FriendRequestDto.class);
     }
 
-    public FriendRequestDto rejectFriendRequest(Long requestId) {
+    public FriendRequestDto rejectFriendRequest(Long userId, Long requestId) {
         log.info("Rejecting friend request with id {}", requestId);
-
         Optional<FriendRequest> friendRequest = friendRequestRepository.findById(requestId);
-        checkFriendRequestStatusAndThrowException(friendRequest);
         friendRequest.get().setStatus(Status.REJECTED);
         return  modelMapper.map(friendRequestRepository.save(friendRequest.get()), FriendRequestDto.class);
     }
 
-    private void throwUserNotFoundException(Long friendId) {
-        throw new UserNotFoundException(String.format("User with id %s does not exist", friendId));
+    public List<FriendRequestDto> getAllFriendRequestByIdSender(Long idSender) {
+        log.info("Getting all friend request for user with id {}", idSender);
+         return friendRequestRepository.findByUserIdSender(idSender).stream().map(element -> modelMapper.map(element, FriendRequestDto.class)).toList();
     }
 
-    private void throwFriendRequestException(String message) {
-        throw new FriendRequestException(message);
+    public List<FriendRequestDto> getAllFriendRequestByIdSenderAndStatus(Long idSender, Status status) {
+        log.info("Getting all friend request for user with id {} and status {}", idSender, status);
+        return friendRequestRepository.findByUserIdSenderAndStatus(idSender, status).stream().map(element -> modelMapper.map(element, FriendRequestDto.class)).toList();
     }
 
-    private void checkFriendRequestStatusAndThrowException(Optional<FriendRequest> request) {
-        if(request.isPresent()){
-            switch (request.get().getStatus()) {
-                case ACCEPTED:
-                    throwFriendRequestException("Vous êtes déjà amis");
-                    break;
-                case REJECTED:
-                    throwFriendRequestException("Demande d'amis Rejected");
-                    break;
-                default:
-                    throwFriendRequestException("Demande d'amis déjà envoyée");
-                    break;
-            }
-        }
-    }
+
+
 }

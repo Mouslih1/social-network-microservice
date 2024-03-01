@@ -24,5 +24,13 @@ public class FriendRequest {
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
 
+        @PrePersist
+        protected void onCreate() {
+                createdAt = LocalDateTime.now();
+        }
 
+        @PreUpdate
+        protected void onUpdate() {
+                updatedAt = LocalDateTime.now();
+        }
 }
