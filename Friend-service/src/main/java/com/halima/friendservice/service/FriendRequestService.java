@@ -36,6 +36,9 @@ public class FriendRequestService {
 
     public FriendRequestDto createFriendRequest(Long userIdSender, Long friendId) {
         log.info("Creating friend request for user {} and friend {}", userIdSender, friendId);
+        if(friendRepository.existsByUserIdAndFriendId(userIdSender, friendId)){
+            throwFriendRequestException("Vous êtes déjà amis");
+        }
         FriendRequest friendRequest = FriendRequest.builder()
                 .userIdSender(userIdSender)
                 .friendId(friendId)
@@ -57,7 +60,9 @@ public class FriendRequestService {
         log.info("Accepting friend request with id {}", requestId);
 
         Optional<FriendRequest> friendRequest = getFriendRequest(userId, requestId);
-
+        if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getFriendId())){
+            throwFriendRequestException("Vous êtes déjà amis");
+        }
         friendRequest.get().setStatus(Status.ACCEPTED);
         friendRequest.get().setUpdatedAt(LocalDateTime.now());
         Friend friend = Friend.builder()
@@ -72,7 +77,11 @@ public class FriendRequestService {
 
     public FriendRequestDto rejectFriendRequest(Long userId, Long requestId) {
         log.info("Rejecting friend request with id {}", requestId);
+
         Optional<FriendRequest> friendRequest = friendRequestRepository.findById(requestId);
+        if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getFriendId())){
+            throwFriendRequestException("Vous êtes déjà amis");
+        }
         friendRequest.get().setStatus(Status.REJECTED);
         friendRequest.get().setUpdatedAt(LocalDateTime.now());
         return  modelMapper.map(friendRequestRepository.save(friendRequest.get()), FriendRequestDto.class);
