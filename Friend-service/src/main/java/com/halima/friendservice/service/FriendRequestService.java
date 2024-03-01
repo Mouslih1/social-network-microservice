@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,14 +32,18 @@ public class FriendRequestService {
     private final FriendRequestRepository friendRequestRepository;
 
     private final FriendRepository friendRepository;
+    private final UserClient userClient;
 
 
 
     public FriendRequestDto createFriendRequest(Long userIdSender, Long friendId) {
         log.info("Creating friend request for user {} and friend {}", userIdSender, friendId);
-        if(friendRepository.existsByUserIdAndFriendId(userIdSender, friendId)){
-            throwFriendRequestException("Vous êtes déjà amis");
-        }
+        if(!userClient.userExists(friendId)) throwUserNotFoundException(friendId);
+
+        if(friendRepository.existsByUserIdAndFriendId(userIdSender, friendId))  throwFriendRequestException("Vous êtes déjà amis");
+        checkIfUserIsSendingRequestToSelf(userIdSender, friendId);
+        checkFriendRequestStatusAndThrowException(getFriendRequest(userIdSender, friendId));
+
         FriendRequest friendRequest = FriendRequest.builder()
                 .userIdSender(userIdSender)
                 .friendId(friendId)
@@ -51,7 +56,8 @@ public class FriendRequestService {
     }
 
     public Optional<FriendRequest> getFriendRequest(Long userIdSender, Long friendId) {
-        return friendRequestRepository.findByUserIdSenderAndFriendId(userIdSender, friendId);
+        log.info("Getting friend request for user {} and friend {}", userIdSender, friendId);
+        return friendRequestRepository.findByUserIdSenderAndId(userIdSender, friendId);
     }
 
 
@@ -60,9 +66,17 @@ public class FriendRequestService {
         log.info("Accepting friend request with id {}", requestId);
 
         Optional<FriendRequest> friendRequest = getFriendRequest(userId, requestId);
-        if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getFriendId())){
-            throwFriendRequestException("Vous êtes déjà amis");
-        }
+        log.info("Optional Status friend request with id {}", friendRequest.isPresent());
+
+        if(!userClient.userExists(friendRequest.get().getFriendId())) throwUserNotFoundException(friendRequest.get().getFriendId());
+        log.info("UserClien Status friend request with id {}", requestId);
+
+        checkIfUserIsSendingRequestToSelf(userId, friendRequest.get().getFriendId());
+        log.info("Self Status friend request with id {}", requestId);
+
+        if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getFriendId()))  throwFriendRequestException("Vous êtes déjà amis");
+
+        if(!Objects.equals(userId, friendRequest.get().getFriendId())) throwFriendRequestException("Vous ne pouvez pas accepter une demande d'amis qui ne vous est pas destinée");
         friendRequest.get().setStatus(Status.ACCEPTED);
         friendRequest.get().setUpdatedAt(LocalDateTime.now());
         Friend friend = Friend.builder()
@@ -79,9 +93,15 @@ public class FriendRequestService {
         log.info("Rejecting friend request with id {}", requestId);
 
         Optional<FriendRequest> friendRequest = friendRequestRepository.findById(requestId);
-        if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getFriendId())){
+        if(!userClient.userExists(friendRequest.get().getFriendId())) throwUserNotFoundException(friendRequest.get().getFriendId());
+        checkIfUserIsSendingRequestToSelf(userId, friendRequest.get().getFriendId());
+
+        Boolean isFriend = friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getFriendId());
+        if(isFriend){
             throwFriendRequestException("Vous êtes déjà amis");
         }
+        if(!Objects.equals(userId, friendRequest.get().getFriendId())) throwFriendRequestException("Vous ne pouvez pas accepter une demande d'amis qui ne vous est pas destinée");
+
         friendRequest.get().setStatus(Status.REJECTED);
         friendRequest.get().setUpdatedAt(LocalDateTime.now());
         return  modelMapper.map(friendRequestRepository.save(friendRequest.get()), FriendRequestDto.class);
@@ -121,5 +141,16 @@ public class FriendRequestService {
     private void throwFriendRequestException(String message) {
         throw new FriendRequestException(message);
     }
+    private void throwUserNotFoundException(Long friendId) {
+        throw new UserNotFoundException(String.format("User with id %s does not exist", friendId));
+    }
 
+
+
+    public void checkIfUserIsSendingRequestToSelf(Long loggedInUserId, Long senderId) {
+        log.info("Checking if user is sending request to self {} {}", loggedInUserId, senderId);
+        if (loggedInUserId.equals(senderId)) {
+            throwFriendRequestException("Vous ne pouvez pas envoyer une demande à vous-même");
+        }
+    }
 }

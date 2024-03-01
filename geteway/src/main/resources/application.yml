@@ -58,10 +58,10 @@ spring:
           filters:
             - AuthenticationFilter
 
-        - id: friend-requests
+        - id: friend-services
           uri: http://localhost:8078
           predicates:
-            - Path=/api/friend-requests/**
+            - Path=/api/friend/**
           filters:
             - AuthenticationFilter
 
