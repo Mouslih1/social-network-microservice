@@ -61,7 +61,7 @@ public class FriendRequestService {
         friendRequest.get().setStatus(Status.ACCEPTED);
         friendRequest.get().setUpdatedAt(LocalDateTime.now());
         Friend friend = Friend.builder()
-                .userIdSender(friendRequest.get().getUserIdSender())
+                .userId(friendRequest.get().getUserIdSender())
                 .friendId(friendRequest.get().getFriendId())
                 .build();
         friendRepository.save(friend);

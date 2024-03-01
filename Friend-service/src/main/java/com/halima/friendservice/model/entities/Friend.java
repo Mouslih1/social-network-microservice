@@ -16,7 +16,8 @@ public class Friend {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userIdSender;
+
+    private Long userId;
     private Long friendId;
     @Column(name = "accepted_at")
     private LocalDateTime acceptedAt;
