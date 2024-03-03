@@ -21,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -60,7 +61,7 @@ public class FileStorageService {
             }
 
             String newFilename = UUID.randomUUID().toString().substring(0,5)+"-"+filename ;
-
+            String encodedFilename = URLEncoder.encode(newFilename, StandardCharsets.UTF_8).replace("+", "%20");
             try (InputStream inputStream = file.getInputStream()) {
                 Path userDir = Paths.get(uploadDirectory);
 
@@ -78,7 +79,7 @@ public class FileStorageService {
             // create the file URL using the gateway hostname, port, media service path, user ID, post ID, and new filename
             // (use the UTF-8 charset) and store it in the fileUrl variable
             String fileUrl = String.format("http://%s:%s%s/%s",
-                    gatewayHostName, gatewayPort, mediaServicePath,  newFilename);
+                    gatewayHostName, gatewayPort, mediaServicePath,  encodedFilename);
 
             log.info("successfully stored file {} location {}", filename, fileUrl);
 
