@@ -49,4 +49,11 @@ public class ImageService {
         List<Media> mediaList = mediaRepository.findByPostId(postId);
         return modelMapper.map(mediaList, List.class);
     }
+
+    public void deleteMediaByPostId(Long postId) {
+        mediaRepository.findByPostId(postId).forEach(media -> {
+            fileStorageService.delete(media.getFilename());
+            mediaRepository.delete(media);
+        });
+    }
 }

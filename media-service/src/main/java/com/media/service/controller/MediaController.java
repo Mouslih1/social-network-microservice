@@ -44,6 +44,11 @@ public class MediaController {
         return mediaService.getMediaByPostId(postId);
     }
 
+    @DeleteMapping("/post/{postId}")
+    public void deleteMediaByPostId(@PathVariable("postId") Long postId) {
+        mediaService.deleteMediaByPostId(postId);
+    }
+
 
 
 

@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface MediaRepository extends JpaRepository<Media, Long> {
     Optional<Media> findByMediaUuid(String mediaUuid);
     List<Media> findByPostId(Long postId);
-    List<Media> findByUserId(Long userId);
+
 }

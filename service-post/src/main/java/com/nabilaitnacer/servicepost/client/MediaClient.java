@@ -22,4 +22,7 @@ public interface MediaClient {
 
     @DeleteMapping("/{mediaUuid}")
     ResponseEntity<Void> delete(@PathVariable String mediaUuid,@RequestParam("userId") Long userId,@RequestParam("postId") Long postId) ;
+    @DeleteMapping("/post/{postId}")
+    void deleteMediaByPostId(@PathVariable("postId") Long postId);
+
 }

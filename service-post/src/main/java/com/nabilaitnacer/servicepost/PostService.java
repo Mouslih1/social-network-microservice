@@ -77,8 +77,12 @@ public class PostService {
         return postResponse;
     }
 
-    public void deletePost(Long id) {
-        postRepository.deleteById(id);
+  public void deletePost(Long userId, Long id) {
+        PostEntity postEntity = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("Post not found"));
+        if (!postEntity.getUserId().equals(userId)) throw new PostException("You are not the owner of the post");
+        mediaClient.deleteMediaByPostId(id);
+        postRepository.delete(postEntity);
+
     }
 
     public List<PostEntityDto> getPostsByUserId(Long id) {
