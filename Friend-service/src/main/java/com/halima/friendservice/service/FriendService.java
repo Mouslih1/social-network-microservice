@@ -3,12 +3,15 @@ package com.halima.friendservice.service;
 import com.halima.friendservice.dto.FriendDto;
 import com.halima.friendservice.repository.FriendRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class FriendService {
     private final FriendRepository friendRepository;
 
@@ -20,9 +23,15 @@ public class FriendService {
                 .friendId(friendIds)
                 .build();
     }
+    @Transactional
+    public void deleteFriend(Long userId, Long friendId) {
+        log.info("user with id {}  friend with id {} ", userId, friendId);
+      friendRepository.deleteByUserIdAndFriendId(userId, friendId);
+      log.info("Friend with id {} ", findFriendByUserId(userId, friendId));
+      friendRepository.deleteByUserIdAndFriendId(friendId, userId);
+        log.info("Friend with id {} ", findFriendByUserId(friendId, userId));
 
-    public void deleteByUserIdAndFriendId(Long userId, Long friendId) {
-        friendRepository.deleteByUserIdAndFriendId(userId, friendId);
+
     }
 
     public Boolean existsByUserIdAndFriendId(Long userId, Long friendId) {

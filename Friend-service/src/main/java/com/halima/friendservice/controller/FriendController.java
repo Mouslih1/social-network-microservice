@@ -14,12 +14,7 @@ public class FriendController {
     private final FriendService friendService;
 
 
-    // Delete a friend
-    @DeleteMapping("/{friendId}")
-    public ResponseEntity<Void> deleteFriend(@RequestHeader("id") String userId, Long friendId) {
-        friendService.deleteByUserIdAndFriendId(Long.valueOf(userId), friendId);
-        return ResponseEntity.noContent().build();
-    }
+
 
 
     // Get all friends
@@ -33,6 +28,13 @@ public class FriendController {
     public ResponseEntity<Long> getFriend(@RequestHeader("id") String userId, @PathVariable Long friendId) {
 
         return ResponseEntity.ok(friendService.findFriendByUserId(Long.valueOf(userId), friendId));
+    }
+    // Delete a friend
+
+    @DeleteMapping("/{friendId}")
+    public ResponseEntity<Void> deleteFriend(@RequestHeader("id") String userId,@PathVariable Long friendId) {
+        friendService.deleteFriend(Long.valueOf(userId), friendId);
+        return ResponseEntity.noContent().build();
     }
 
 

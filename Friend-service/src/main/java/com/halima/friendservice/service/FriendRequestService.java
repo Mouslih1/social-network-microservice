@@ -71,8 +71,6 @@ public class FriendRequestService {
         if(!userClient.userExists(friendRequest.get().getUserIdSender())) throwUserNotFoundException(friendRequest.get().getFriendId());
         log.info("UserClien Status friend request with id {}", requestId);
 
-
-
         if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getUserIdSender()))  throwFriendRequestException("Vous êtes déjà amis");
         log.info("FriendRepository Status friend request with id {}", requestId);
         if(!Objects.equals(userId, friendRequest.get().getFriendId())) throwFriendRequestException("Vous ne pouvez pas accepter une demande d'amis qui ne vous est pas destinée");
@@ -126,10 +124,7 @@ public class FriendRequestService {
     }
 
 
-        public void deleteFriend(Long userId, Long friendId) {
-            friendRepository.deleteByUserIdAndFriendId(userId, friendId);
-            friendRepository.deleteByFriendIdAndUserId(friendId, userId);
-        }
+
     //TODO complet delete friend and request
     public void checkFriendRequestStatusAndThrowException(Optional<FriendRequest> request) {
         if(request.isPresent()){
