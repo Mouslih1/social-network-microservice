@@ -12,16 +12,13 @@ import com.halima.friendservice.repository.FriendRequestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -57,7 +54,7 @@ public class FriendRequestService {
 
     public Optional<FriendRequest> getFriendRequest(Long userId, Long requestId) {
         log.info("Getting friend request for user {} and friend {}", userId, requestId);
-        return friendRequestRepository.findByFriendIdAndAndId(userId, requestId);
+        return friendRequestRepository.findByFriendIdAndId(userId, requestId);
     }
 
 
@@ -67,11 +64,12 @@ public class FriendRequestService {
 
         Optional<FriendRequest> friendRequest = getFriendRequest(userId, requestId);
         log.info("Optional Status friend request with id {}", friendRequest.isPresent());
+        if (!friendRequest.isPresent()) {
+         throwFriendRequestException("Demande d'amis n'existe pas");
+        }
 
         if(!userClient.userExists(friendRequest.get().getUserIdSender())) throwUserNotFoundException(friendRequest.get().getFriendId());
         log.info("UserClien Status friend request with id {}", requestId);
-
-
 
         if(friendRepository.existsByUserIdAndFriendId(userId, friendRequest.get().getUserIdSender()))  throwFriendRequestException("Vous êtes déjà amis");
         log.info("FriendRepository Status friend request with id {}", requestId);
@@ -82,7 +80,12 @@ public class FriendRequestService {
                 .userId(userId)
                 .friendId(friendRequest.get().getUserIdSender())
                 .build();
+        Friend friend1 = Friend.builder()
+                .userId(friendRequest.get().getUserIdSender())
+                .friendId(userId)
+                .build();
         friendRepository.save(friend);
+        friendRepository.save(friend1);
         friendRequestRepository.save(friendRequest.get());
 
         return modelMapper.map(friendRequest.get(), FriendRequestDto.class);
@@ -119,10 +122,10 @@ public class FriendRequestService {
         log.info("Getting all friend request for user with id {} and status {}", idSender, status);
         return friendRequestRepository.findByUserIdSenderAndStatus(idSender, status).stream().map(element -> modelMapper.map(element, FriendRequestDto.class)).toList();
     }
-    public void deleteFriendRequest(Long userId,Long requestId){
-        log.info("Deleting friend request with id {}", requestId);
-        friendRequestRepository.deleteById(requestId);
-    }
+
+
+
+    //TODO complet delete friend and request
     public void checkFriendRequestStatusAndThrowException(Optional<FriendRequest> request) {
         if(request.isPresent()){
             switch (request.get().getStatus()) {

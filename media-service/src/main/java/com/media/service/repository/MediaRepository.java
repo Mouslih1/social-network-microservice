@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MediaRepository extends JpaRepository<Media, Long> {
-    List<Media> findMediaByPostId(Long postId);
+    Optional<Media> findByMediaUuid(String mediaUuid);
+    List<Media> findByPostId(Long postId);
 
-    void deleteByPostId(Long postId);
-    Optional<Media> findByIdAndPostId(Long id, Long postId);
 }

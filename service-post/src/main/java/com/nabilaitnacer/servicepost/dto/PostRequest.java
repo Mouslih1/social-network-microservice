@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostRequest {
+
     private String body;
-    private String userId;
     private List<MultipartFile> multipartFiles;
 }

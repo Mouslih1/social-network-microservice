@@ -1,6 +1,8 @@
-package com.example.interactionservice.dto;
+package com.nabilaitnacer.servicepost.dto.inter;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 

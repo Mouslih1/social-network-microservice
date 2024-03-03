@@ -1,7 +1,8 @@
 package com.media.service.controller;
 
-import com.media.service.dto.MediaDTO;
-import com.media.service.service.impl.MediaServiceImpl;
+
+import com.media.service.dto.MediaDto;
+import com.media.service.service.ImageService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -19,28 +20,36 @@ import java.util.List;
 public class MediaController {
 
 
-    private final MediaServiceImpl mediaService;
+    private final ImageService mediaService;
 
     @PostMapping
-    public ResponseEntity<List<MediaDTO>> add(@RequestParam("files") List<MultipartFile> files,
-                                              @RequestParam("postId") Long postId) throws IOException {
-        List<MediaDTO> mediaList = new ArrayList<>();
+    public ResponseEntity<List<MediaDto>> add(@RequestParam("files") List<MultipartFile> files,
+                                              @RequestParam("postId") Long postId,@RequestParam("userId") Long userId) throws IOException {
+        List<MediaDto> mediaList = new ArrayList<>();
         for (MultipartFile file : files) {
-            MediaDTO media = mediaService.addMedia(file, postId);
+            MediaDto media = mediaService.upload(file, userId,postId);
             mediaList.add(media);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(mediaList);
     }
 
-    @DeleteMapping("/post/{postId}")
-    public ResponseEntity<Void> deleteMedia(@PathVariable("postId") Long postId) throws IOException {
-        //TODO implement this method
+    @DeleteMapping("/{mediaUuid}")
+    public ResponseEntity<Void> delete(@PathVariable String mediaUuid,@RequestParam("userId") Long userId,@RequestParam("postId") Long postId) {
+        mediaService.delete(mediaUuid);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/post/{postId}")
-    public ResponseEntity<List<MediaDTO>> getMediaByPostId(@PathVariable("postId") Long postId) {
-        return ResponseEntity.ok(null);
+    public List<MediaDto> getMediaByPostId(@PathVariable("postId") Long postId) {
+        return mediaService.getMediaByPostId(postId);
     }
+
+    @DeleteMapping("/post/{postId}")
+    public void deleteMediaByPostId(@PathVariable("postId") Long postId) {
+        mediaService.deleteMediaByPostId(postId);
+    }
+
+
+
 
 }
