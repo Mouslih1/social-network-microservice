@@ -1,4 +1,4 @@
-package com.nabilaitnacer.servicepost;
+package com.nabilaitnacer.servicepost.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

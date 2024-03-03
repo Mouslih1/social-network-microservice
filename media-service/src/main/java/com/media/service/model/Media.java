@@ -20,6 +20,7 @@ public class Media {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private Long userId;
     private String pathImage;
     private Long postId;
     private String type;

@@ -18,5 +18,7 @@ public class MediaDTO {
     private Long postId;
     private String type;
     private Long size;
+    private Long userId;
+
     private LocalDateTime createdDate;
 }

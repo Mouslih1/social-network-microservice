@@ -1,4 +1,4 @@
-package com.nabilaitnacer.servicepost;
+package com.nabilaitnacer.servicepost.dto;
 
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +17,6 @@ public class PostEntityDto implements Serializable {
     String body;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
-    Long userId;
     boolean isDeleted;
+    Long userId;
 }

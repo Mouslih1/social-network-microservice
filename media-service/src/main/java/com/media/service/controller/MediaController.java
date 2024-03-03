@@ -23,18 +23,21 @@ public class MediaController {
 
     @PostMapping
     public ResponseEntity<List<MediaDTO>> add(@RequestParam("files") List<MultipartFile> files,
-                                              @RequestParam("postId") Long postId) throws IOException {
+                                              @RequestParam("postId") Long postId,@RequestParam("userId") Long userId) throws IOException {
         List<MediaDTO> mediaList = new ArrayList<>();
         for (MultipartFile file : files) {
-            MediaDTO media = mediaService.addMedia(file, postId);
+            MediaDTO media = mediaService.addMedia(file, postId,userId);
             mediaList.add(media);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(mediaList);
     }
 
-    @DeleteMapping("/post/{postId}")
-    public ResponseEntity<Void> deleteMedia(@PathVariable("postId") Long postId) throws IOException {
-        //TODO implement this method
+    @DeleteMapping
+    public ResponseEntity<Void> deleteMedia(@RequestParam("userId") Long userId,
+                                            @RequestParam("mediaId") Long mediaId,
+                                            @RequestParam("postId") Long postId
+                                            ) {
+        mediaService.deleteMedia(userId, postId, mediaId);
         return ResponseEntity.noContent().build();
     }
 

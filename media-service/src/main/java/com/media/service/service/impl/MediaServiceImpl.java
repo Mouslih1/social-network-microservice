@@ -2,6 +2,7 @@ package com.media.service.service.impl;
 
 
 import com.media.service.dto.MediaDTO;
+import com.media.service.exception.MediaException;
 import com.media.service.model.Media;
 import com.media.service.repository.MediaRepository;
 import com.media.service.service.MediaService;
@@ -38,7 +39,7 @@ public class MediaServiceImpl  implements MediaService {
     }
 
     @Override
-    public MediaDTO addMedia(MultipartFile file, long postId) throws IOException {
+    public MediaDTO addMedia(MultipartFile file, long postId,Long userId) throws IOException {
         String originalFileName = file.getOriginalFilename();
         String fileName = System.currentTimeMillis() + "_" + originalFileName;
         String url = fileStorageLocation + fileName;
@@ -51,12 +52,12 @@ public class MediaServiceImpl  implements MediaService {
         mediaDTO.setType(file.getContentType());
         mediaDTO.setSize(file.getSize());
         mediaDTO.setCreatedDate(LocalDateTime.now());
+        mediaDTO.setUserId(userId);
         Media media = modelMapper.map(mediaDTO, Media.class);
         mediaRepository.save(media);
-
         return modelMapper.map(media, MediaDTO.class);
-    }
 
+    }
 
 
     @Override
@@ -71,9 +72,23 @@ public class MediaServiceImpl  implements MediaService {
     }
 
     @Override
-    public void deleteMedia(Long id) throws Exception {
+    public void deleteMedia(Long userId, Long postId, Long mediaId)  {
+        Media media = mediaRepository.findById(mediaId).orElseThrow(() -> new MediaException("Media not found"));
+        if (media.getUserId().equals(userId) && media.getPostId().equals(postId)) {
+            mediaRepository.deleteById(mediaId);
+            String path = media.getPathImage();
+            Path pathfile = Paths.get(path);
+            try {
+                Files.delete(pathfile);
+            } catch (IOException e) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "File not found");
+            }
+        } else {
+            throw new MediaException("Media not found");
+        }
 
     }
+
 
     @Transactional
     public void deleteMedia(Long postId,Long id) {

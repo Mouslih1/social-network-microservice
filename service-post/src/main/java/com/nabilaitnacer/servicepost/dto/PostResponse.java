@@ -1,7 +1,5 @@
 package com.nabilaitnacer.servicepost.dto;
 
-import com.nabilaitnacer.servicepost.MediaDTO;
-import com.nabilaitnacer.servicepost.PostEntityDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
