@@ -5,10 +5,13 @@ package com.nabilaitnacer.servicepost;
 import com.nabilaitnacer.servicepost.dto.PostRequest;
 import com.nabilaitnacer.servicepost.dto.PostResponse;
 import com.nabilaitnacer.servicepost.dto.PostUpdateRequest;
+import com.nabilaitnacer.servicepost.dto.PostWithInteractionResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -42,7 +45,10 @@ public class PostController {
     private Long getUserId(String userId) {
         return Long.parseLong(userId);
     }
-
+    @GetMapping("/all")
+    public ResponseEntity<List<PostWithInteractionResponse>> getPost(@RequestHeader("id") String userId) {
+        return ResponseEntity.ok(postService.getAllPost());
+    }
 
 
 

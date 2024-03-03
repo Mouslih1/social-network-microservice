@@ -1,7 +1,9 @@
 package com.nabilaitnacer.servicepost;
 
+import com.nabilaitnacer.servicepost.client.InteractionClient;
 import com.nabilaitnacer.servicepost.client.MediaClient;
 import com.nabilaitnacer.servicepost.dto.*;
+import com.nabilaitnacer.servicepost.dto.inter.InteractionDto;
 import com.nabilaitnacer.servicepost.exception.PostException;
 import com.nabilaitnacer.servicepost.exception.PostNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
     private final MediaClient mediaClient;
+    private final InteractionClient interactionClient;
 
     @Transactional
     public PostResponse createPost(Long userId, PostRequest postRequest) {
@@ -92,5 +95,21 @@ public class PostService {
                 .toList();
     }
 
+    public List<PostWithInteractionResponse> getAllPost() {
+        List<PostWithInteractionResponse> postWithInteractionResponses = new ArrayList<>();
+        List<PostEntity> postEntities = postRepository.findAll();
+        postEntities.forEach(postEntity -> {
+            List<MediaDTO> mediaDTOS = mediaClient.getMediaByPostId(postEntity.getId());
+            PostWithInteractionResponse postWithInteractionResponse = new PostWithInteractionResponse();
+            postWithInteractionResponse.setPostResponse(PostResponse.builder()
+                    .post(modelMapper.map(postEntity, PostEntityDto.class))
+                    .medias(mediaDTOS)
+                    .build());
+            InteractionDto intercationResponse = interactionClient.getInteractionsOfPost(postEntity.getId()).getBody();
+            postWithInteractionResponse.setInteractionDto(intercationResponse);
+            postWithInteractionResponses.add(postWithInteractionResponse);
 
+        });
+        return postWithInteractionResponses;
+    }
 }

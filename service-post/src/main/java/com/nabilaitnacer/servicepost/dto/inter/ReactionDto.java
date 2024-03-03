@@ -1,17 +1,19 @@
-package com.example.interactionservice.dto;
+package com.nabilaitnacer.servicepost.dto.inter;
 
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentDto {
+@ToString
+public class ReactionDto {
 
     private Long id;
     private Long postId;
     private Long userId;
-    private String commentText;
+    private ReactionType reactionType;
     private LocalDateTime createdAt;
 }
