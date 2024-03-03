@@ -1,10 +1,13 @@
 package com.halima.friendservice.controller;
 
 import com.halima.friendservice.dto.FriendDto;
+import com.halima.friendservice.dto.UserDTO;
 import com.halima.friendservice.service.FriendService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/friend")
@@ -14,7 +17,10 @@ public class FriendController {
     private final FriendService friendService;
 
 
-
+    @GetMapping("/profiles/all")
+    public ResponseEntity<List<UserDTO>> getAllFriendsProfile(@RequestHeader("id") String userId) {
+        return ResponseEntity.ok(friendService.getAllFriendsProfile(Long.valueOf(userId)));
+    }
 
 
     // Get all friends

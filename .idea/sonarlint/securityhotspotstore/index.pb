@@ -77,3 +77,5 @@ PFriend-service/src/main/java/com/halima/friendservice/service/FriendService.jav
 VFriend-service/src/main/java/com/halima/friendservice/controller/FriendController.java,7\3\73cb4c4e2234626f40656da2648f36f4734838b6
 ‘
 ainteraction-service/src/main/java/com/example/interactionservice/service/Impl/CommentService.java,e\f\ef27c836337d0a002cca0b4c6bf828d27391a46b
+v
+FFriend-service/src/main/java/com/halima/friendservice/dto/UserDTO.java,a\e\ae39b5b95574457c8fb6b661d18098de008f9a88
