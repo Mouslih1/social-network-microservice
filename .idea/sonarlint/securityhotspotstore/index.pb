@@ -151,3 +151,8 @@ w
 Gmedia-service/src/main/java/com/media/service/service/ImageService.java,4\e\4e289781a04d6de506352707f8c3cbfabd780aa4
 
 Ogeteway/src/main/java/com/exemple/geteway/exception/GlobalExceptionHandler.java,a\0\a09aca07ceb8607a034b31de954be6bcf87d6493
+H
+media-service/.gitignore,f\4\f4d6d4eb8e6368e32ffd6dd2f6961f57d0f69891
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
