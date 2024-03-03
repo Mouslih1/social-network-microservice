@@ -32,8 +32,8 @@ public class FriendService {
     public Long countByUserId(Long userId) {
         return friendRepository.countByUserId(userId);
     }
-    public Long findFriendByUserId(Long userId) {
-        return friendRepository.findFriendByUserId(userId);
+    public Long findFriendByUserId(Long userId, Long friendId) {
+        return friendRepository.findFriendIdByUserIdAndFriendId(userId, friendId);
     }
 
 

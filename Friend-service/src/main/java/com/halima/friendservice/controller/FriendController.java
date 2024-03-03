@@ -23,7 +23,7 @@ public class FriendController {
 
 
     // Get all friends
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<FriendDto> getFriends(@RequestHeader("id") String userId) {
         return ResponseEntity.ok(friendService.findFriendIdsByUserId(Long.valueOf(userId)));
     }
@@ -31,7 +31,10 @@ public class FriendController {
     // Get  friend by id
     @GetMapping("/{friendId}")
     public ResponseEntity<Long> getFriend(@RequestHeader("id") String userId, @PathVariable Long friendId) {
-        return ResponseEntity.ok(friendService.findFriendByUserId(Long.valueOf(userId)));
+
+        return ResponseEntity.ok(friendService.findFriendByUserId(Long.valueOf(userId), friendId));
     }
+
+
 
 }

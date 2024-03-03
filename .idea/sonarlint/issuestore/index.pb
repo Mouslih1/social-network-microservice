@@ -29,8 +29,6 @@ r
 Bgeteway/src/main/java/com/exemple/geteway/model/DataFromToken.java,1\3\134b911bef8526a11b88a19627ebd26dd772341a
 q
 Ageteway/src/main/java/com/exemple/geteway/GetewayApplication.java,f\c\fcb3d7c03676e276c31eed16fb8ae09884ab2d71
-Ç
-RFriend-service/src/main/java/com/halima/friendservice/feign/UserServiceClient.java,5\9\593a97d78e831ce06b7a4820079cf35829ad2220
 ç
 ]Friend-service/src/main/java/com/halima/friendservice/controller/FriendRequestController.java,1\4\14a3c3b4f13b8e8fdb23a96c98b2680317d0d42c
 í
@@ -73,11 +71,9 @@ D
 [Friend-service/src/main/java/com/halima/friendservice/exception/FriendRequestException.java,d\0\d0311d3715cc864c636793657fa4ace8fa7a8539
 w
 Gdiscovery/src/main/java/com/example/discovery/DiscoveryApplication.java,f\5\f58f3940e85d9bffb5cf4068eba76276df036e8c
-Ç
-RFriend-service/src/main/java/com/halima/friendservice/aop/FriendRequestAspect.java,f\5\f509b71cbcb78a1eafc8bd2ba016e39a2161d8b8
-~
-Ngeteway/src/main/java/com/exemple/geteway/exception/UserNotFoundException.java,5\d\5d7abec3c56deec031c69081b46b57b31ba15ff4
 Ä
 PFriend-service/src/main/java/com/halima/friendservice/service/FriendService.java,4\d\4db81defae2a0baf6b9cb1fca2e7f5b1576f95e2
 Ü
 VFriend-service/src/main/java/com/halima/friendservice/controller/FriendController.java,7\3\73cb4c4e2234626f40656da2648f36f4734838b6
+ë
+ainteraction-service/src/main/java/com/example/interactionservice/service/Impl/CommentService.java,e\f\ef27c836337d0a002cca0b4c6bf828d27391a46b
