@@ -1,6 +1,7 @@
 package com.media.service.service;
 
 import com.media.service.dto.MediaDto;
+import com.media.service.exception.MediaException;
 import com.media.service.model.Media;
 import com.media.service.repository.MediaRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,11 @@ public class ImageService {
         metadata.setCreatedDate(media.getCreatedDate());
 
         return metadata;
+    }
+    public void delete(String mediaUuid) {
+        Media media = mediaRepository.findByMediaUuid(mediaUuid)
+                .orElseThrow(() -> new MediaException("Media not found with uuid: " + mediaUuid));
+        fileStorageService.delete(media.getFilename());
+        mediaRepository.delete(media);
     }
 }

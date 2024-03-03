@@ -33,6 +33,12 @@ public class MediaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(mediaList);
     }
 
+    @DeleteMapping("/{mediaUuid}")
+    public ResponseEntity<Void> delete(@PathVariable String mediaUuid) {
+        mediaService.delete(mediaUuid);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 

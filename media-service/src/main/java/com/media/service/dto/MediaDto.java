@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class MediaDto implements Serializable {
     Long id;
+    String mediaUuid;
     String filename;
     Long userId;
     String uri;
     Long postId;
     String fileType;
-    String filePath;
     Long size;
     LocalDateTime createdDate;
 }

@@ -16,7 +16,7 @@ public class MediaDTO {
     String uri;
     Long postId;
     String fileType;
-    String filePath;
+    String mediaUuid;
     Long size;
     LocalDateTime createdDate;
 }

@@ -27,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -84,17 +85,29 @@ public class FileStorageService {
             log.info("successfully stored file {} location {}", filename, fileUrl);
 
         return MediaDto.builder()
-                .filename(filename)
+                .filename(newFilename)
                 .userId(userId)
+                .mediaUuid(postId+""+ userId +  UUID.randomUUID().toString().substring(0,4))
                 .postId(postId)
                 .fileType(file.getContentType())
                 .size(file.getSize())
                 .uri(fileUrl)
+                .createdDate(LocalDateTime.now())
                 .build();
         }
         catch (IOException e) {
             log.error("failed to store file {} error: {}", filename, e);
             throw new StorageException("Failed to store file " + filename, e);
+        }
+    }
+    public void delete( String filename) {
+        try {
+
+            Path filePath = Paths.get(uploadDirectory, filename);
+            Files.delete(filePath);
+        } catch (IOException e) {
+            log.error("Failed to delete file {} error: {}", filename, e);
+            throw new StorageException("Failed to delete file " + filename, e);
         }
     }
 }
