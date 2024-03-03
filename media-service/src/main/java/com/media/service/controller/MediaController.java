@@ -27,18 +27,22 @@ public class MediaController {
                                               @RequestParam("postId") Long postId,@RequestParam("userId") Long userId) throws IOException {
         List<MediaDto> mediaList = new ArrayList<>();
         for (MultipartFile file : files) {
-            MediaDto media = mediaService.upload(file, postId,userId);
+            MediaDto media = mediaService.upload(file, userId,postId);
             mediaList.add(media);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(mediaList);
     }
 
     @DeleteMapping("/{mediaUuid}")
-    public ResponseEntity<Void> delete(@PathVariable String mediaUuid) {
+    public ResponseEntity<Void> delete(@PathVariable String mediaUuid,@RequestParam("userId") Long userId,@RequestParam("postId") Long postId) {
         mediaService.delete(mediaUuid);
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/post/{postId}")
+    public List<MediaDto> getMediaByPostId(@PathVariable("postId") Long postId) {
+        return mediaService.getMediaByPostId(postId);
+    }
 
 
 

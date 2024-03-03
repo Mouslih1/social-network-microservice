@@ -27,6 +27,8 @@ public class PostController {
 
     @PutMapping("/{postId}")
     public ResponseEntity<PostResponse> updatePost(@RequestHeader("id") String userId, @PathVariable("postId") Long postId, @ModelAttribute PostUpdateRequest postUpdateRequest) {
+        log.info("update post {} ", postUpdateRequest);
+
         return ResponseEntity.ok(postService.updatePost(getUserId(userId), postId, postUpdateRequest));
     }
 

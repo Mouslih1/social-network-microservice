@@ -50,11 +50,11 @@ public class PostService {
         //check if the user is the owner of the post
         if (!postEntity.getUserId().equals(userId)) throw new PostException("You are not the owner of the post");
         //check if there is media to delete
-        if (postUpdateRequest.getMediaIdsToDelete() != null && !postUpdateRequest.getMediaIdsToDelete().isEmpty()) {
-            postUpdateRequest.getMediaIdsToDelete().forEach(mediaId -> {
+        if (postUpdateRequest.getMediaUuidsToDelete() != null && !postUpdateRequest.getMediaUuidsToDelete().isEmpty()) {
+            postUpdateRequest.getMediaUuidsToDelete().forEach(mediaUuid -> {
                 // call media client to delete media
                 //send post id and media id and user id
-                mediaClient.deleteMedia(userId, mediaId, id);
+                mediaClient.delete(mediaUuid,  userId, id);
             });
         }
         // get the list of media for this post

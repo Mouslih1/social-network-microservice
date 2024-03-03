@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -41,5 +43,10 @@ public class ImageService {
                 .orElseThrow(() -> new MediaException("Media not found with uuid: " + mediaUuid));
         fileStorageService.delete(media.getFilename());
         mediaRepository.delete(media);
+    }
+
+    public List<MediaDto> getMediaByPostId(Long postId) {
+        List<Media> mediaList = mediaRepository.findByPostId(postId);
+        return modelMapper.map(mediaList, List.class);
     }
 }

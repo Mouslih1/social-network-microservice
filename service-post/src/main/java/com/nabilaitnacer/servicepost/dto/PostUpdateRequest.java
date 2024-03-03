@@ -19,5 +19,5 @@ public class PostUpdateRequest {
     // new media to add to the post entity in the database
     private List<MultipartFile> multipartFiles;
     // ids of media to delete from the post entity in the database
-    private List<Long> mediaIdsToDelete;
+    private List<String> mediaUuidsToDelete;
 }
