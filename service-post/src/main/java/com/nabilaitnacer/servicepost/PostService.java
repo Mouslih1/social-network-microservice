@@ -59,7 +59,7 @@ public class PostService {
         }
         // get the list of media for this post
         List<MediaDTO> mediaDTOS = mediaClient.getMediaByPostId(id);
-
+        log.info("mediaDTOS {} ", mediaDTOS);
         //check if there is media to add
         if (postUpdateRequest.getMultipartFiles() != null && !postUpdateRequest.getMultipartFiles().isEmpty()) {
 

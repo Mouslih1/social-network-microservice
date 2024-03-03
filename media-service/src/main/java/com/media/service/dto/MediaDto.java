@@ -1,15 +1,19 @@
-package com.nabilaitnacer.servicepost.dto;
+package com.media.service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.media.service.model.Media;
+import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * DTO for {@link Media}
+ */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class MediaDTO {
+@Builder
+@NoArgsConstructor
+public class MediaDto implements Serializable {
     Long id;
     String filename;
     Long userId;

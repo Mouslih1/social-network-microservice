@@ -1,7 +1,8 @@
 package com.media.service.controller;
 
-import com.media.service.dto.MediaDTO;
-import com.media.service.service.impl.MediaServiceImpl;
+
+import com.media.service.dto.MediaDto;
+import com.media.service.service.ImageService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -19,31 +20,21 @@ import java.util.List;
 public class MediaController {
 
 
-    private final MediaServiceImpl mediaService;
+    private final ImageService mediaService;
 
     @PostMapping
-    public ResponseEntity<List<MediaDTO>> add(@RequestParam("files") List<MultipartFile> files,
+    public ResponseEntity<List<MediaDto>> add(@RequestParam("files") List<MultipartFile> files,
                                               @RequestParam("postId") Long postId,@RequestParam("userId") Long userId) throws IOException {
-        List<MediaDTO> mediaList = new ArrayList<>();
+        List<MediaDto> mediaList = new ArrayList<>();
         for (MultipartFile file : files) {
-            MediaDTO media = mediaService.addMedia(file, postId,userId);
+            MediaDto media = mediaService.upload(file, postId,userId);
             mediaList.add(media);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(mediaList);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteMedia(@RequestParam("userId") Long userId,
-                                            @RequestParam("mediaId") Long mediaId,
-                                            @RequestParam("postId") Long postId
-                                            ) {
-        mediaService.deleteMedia(userId, postId, mediaId);
-        return ResponseEntity.noContent().build();
-    }
 
-    @GetMapping("/post/{postId}")
-    public ResponseEntity<List<MediaDTO>> getMediaByPostId(@PathVariable("postId") Long postId) {
-        return ResponseEntity.ok(null);
-    }
+
+
 
 }
