@@ -35,6 +35,7 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 public class FileStorageService {
+
     @Value("${file.upload-dir}")
     private String uploadDirectory;
 

@@ -25,7 +25,8 @@ public class ImageService {
     private final ModelMapper modelMapper;
 
 
-    public MediaDto upload(MultipartFile file, Long userId,Long postId) {
+    public MediaDto upload(MultipartFile file, Long userId,Long postId)
+    {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
 
         log.info("storing file {}", filename);
