@@ -30,7 +30,7 @@ target/
 
 # Sensitive or high-churn files:
 
-.idea/
+.idea
 
 
 ### Eclipse ###
@@ -58,4 +58,7 @@ build/
 ### Mac OS ###
 .DS_Store
 /.idea/sonarlint/
-/.idea/
+.idea/
+
+images/
+

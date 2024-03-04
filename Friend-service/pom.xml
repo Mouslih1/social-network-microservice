@@ -26,7 +26,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -56,10 +59,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.halima</groupId>
-            <artifactId>User-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>2.3.8</version>
         </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

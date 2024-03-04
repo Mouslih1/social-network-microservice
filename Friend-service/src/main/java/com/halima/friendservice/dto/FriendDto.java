@@ -3,14 +3,16 @@ package com.halima.friendservice.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+import java.util.List;
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class FriendDto {
-    private Long id;
-    private Long userIdSender;
-    private Long friendId;
+
+    private Long userId;
+
+    private List<Long> friendId;
 
 }
