@@ -1,0 +1,16 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  data:
+    redis:
+      host: jdbc:redis://localhost/0
+      port: 6379
+
+server:
+  port: 8085
+

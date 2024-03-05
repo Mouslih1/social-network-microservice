@@ -1,15 +1,5 @@
-server:
-  port: 8074
 spring:
   application:
     name: post-service
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postdb
-    username: postgres
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  config:
+    import: optional:configserver:http://localhost:8888
