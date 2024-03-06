@@ -12,7 +12,22 @@ spring:
       port: 6379
   application:
     name: feeds
+  cloud:
+    config:
+      enabled: false
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        automatic-transition-from-open-to-half-open-enabled: true
+        permittedNumberOfCallsInHalfOpenState: 4
+        waitDurationInOpenState: 10000
 
 server:
   port: 8085
-

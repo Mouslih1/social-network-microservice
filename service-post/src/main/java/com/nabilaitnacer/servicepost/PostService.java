@@ -6,6 +6,7 @@ import com.nabilaitnacer.servicepost.dto.*;
 import com.nabilaitnacer.servicepost.dto.inter.InteractionDto;
 import com.nabilaitnacer.servicepost.exception.PostException;
 import com.nabilaitnacer.servicepost.exception.PostNotFoundException;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -26,6 +27,7 @@ public class PostService {
     private final InteractionClient interactionClient;
 
     @Transactional
+    @CircuitBreaker(name = "createPostCB", fallbackMethod = "createPostFallback")
     public PostResponse createPost(Long userId, PostRequest postRequest) {
         PostEntityDto postEntityDto = PostEntityDto.builder()
                 .body(postRequest.getBody())
@@ -38,12 +40,19 @@ public class PostService {
         PostResponse postResponse = new PostResponse();
         postResponse.setPost(postEntityDto);
         postResponse.getPost().setId(postEntity.getId());
+
+
         if (postRequest.getMultipartFiles() != null && !postRequest.getMultipartFiles().isEmpty()) {
             postResponse.setMedias(mediaClient.add(postRequest.getMultipartFiles(), postEntity.getId(), userId).getBody());
 
         }
         return postResponse;
 
+    }
+
+    public PostResponse createPostFallback(Long userId, PostRequest postRequest, Exception e) {
+        log.error("Fallback createPost", e.getMessage());
+        return new PostResponse();
     }
 
     public PostResponse updatePost(Long userId, Long id, PostUpdateRequest postUpdateRequest) {

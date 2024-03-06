@@ -1,5 +1,6 @@
 server:
   port: 8074
+
 spring:
   application:
     name: post-service
@@ -7,9 +8,23 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postdb
     username: postgres
-    password: root
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        automatic-transition-from-open-to-half-open-enabled: true
+        permittedNumberOfCallsInHalfOpenState: 4
+        waitDurationInOpenState: 10000
