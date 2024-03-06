@@ -10,6 +10,7 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +24,12 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
+    @Qualifier("com.nabilaitnacer.servicepost.client.MediaClient")
     private final MediaClient mediaClient;
+    @Qualifier("com.nabilaitnacer.servicepost.client.InteractionClient")
     private final InteractionClient interactionClient;
 
     @Transactional
-    @CircuitBreaker(name = "createPostCB", fallbackMethod = "createPostFallback")
     public PostResponse createPost(Long userId, PostRequest postRequest) {
         PostEntityDto postEntityDto = PostEntityDto.builder()
                 .body(postRequest.getBody())
@@ -40,8 +42,6 @@ public class PostService {
         PostResponse postResponse = new PostResponse();
         postResponse.setPost(postEntityDto);
         postResponse.getPost().setId(postEntity.getId());
-
-
         if (postRequest.getMultipartFiles() != null && !postRequest.getMultipartFiles().isEmpty()) {
             postResponse.setMedias(mediaClient.add(postRequest.getMultipartFiles(), postEntity.getId(), userId).getBody());
 
@@ -50,10 +50,6 @@ public class PostService {
 
     }
 
-    public PostResponse createPostFallback(Long userId, PostRequest postRequest, Exception e) {
-        log.error("Fallback createPost", e.getMessage());
-        return new PostResponse();
-    }
 
     public PostResponse updatePost(Long userId, Long id, PostUpdateRequest postUpdateRequest) {
 
@@ -78,7 +74,6 @@ public class PostService {
             List<MediaDTO> mediaDTOS1 = mediaClient.add(postUpdateRequest.getMultipartFiles(), id, userId).getBody();
             mediaDTOS.addAll(mediaDTOS1);
         }
-
 
         postEntity.setUpdatedAt(LocalDateTime.now());
         postEntity.setBody(postUpdateRequest.getBody());
