@@ -1,12 +1,13 @@
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+instance:
+  hostname: localhost
+
+client:
+  service-url:
+    defaultZone: http://localhost:8761/eureka
 
 server:
   port: 8078
+
 spring:
   application:
     name: friend-service
@@ -14,7 +15,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/social-networks
     username: postgres
-    password: root
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,8 +25,24 @@ spring:
     config:
       enabled: false
 
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        automatic-transition-from-open-to-half-open-enabled: true
+        permittedNumberOfCallsInHalfOpenState: 4
+        waitDurationInOpenState: 10000
+
+
       management:
         tracing:
           sampling:
             probability: 1.0
+
 

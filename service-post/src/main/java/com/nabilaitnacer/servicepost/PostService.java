@@ -6,9 +6,11 @@ import com.nabilaitnacer.servicepost.dto.*;
 import com.nabilaitnacer.servicepost.dto.inter.InteractionDto;
 import com.nabilaitnacer.servicepost.exception.PostException;
 import com.nabilaitnacer.servicepost.exception.PostNotFoundException;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +24,9 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
+    @Qualifier("com.nabilaitnacer.servicepost.client.MediaClient")
     private final MediaClient mediaClient;
+    @Qualifier("com.nabilaitnacer.servicepost.client.InteractionClient")
     private final InteractionClient interactionClient;
 
     @Transactional
@@ -45,6 +49,7 @@ public class PostService {
         return postResponse;
 
     }
+
 
     public PostResponse updatePost(Long userId, Long id, PostUpdateRequest postUpdateRequest) {
 
@@ -69,7 +74,6 @@ public class PostService {
             List<MediaDTO> mediaDTOS1 = mediaClient.add(postUpdateRequest.getMultipartFiles(), id, userId).getBody();
             mediaDTOS.addAll(mediaDTOS1);
         }
-
 
         postEntity.setUpdatedAt(LocalDateTime.now());
         postEntity.setBody(postUpdateRequest.getBody());
