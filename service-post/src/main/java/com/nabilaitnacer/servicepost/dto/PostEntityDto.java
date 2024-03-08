@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class PostEntityDto implements Serializable {
+
     Long id;
     String body;
     LocalDateTime createdAt;

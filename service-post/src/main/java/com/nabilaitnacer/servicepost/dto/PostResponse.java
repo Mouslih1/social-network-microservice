@@ -14,5 +14,4 @@ import java.util.List;
 public class PostResponse {
     private PostEntityDto post;
     private List<MediaDTO> medias;
-
 }

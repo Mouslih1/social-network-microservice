@@ -32,3 +32,7 @@ spring:
 file:
   upload-dir: /Users/kawtarmahy/Desktop/gc/social-network-microservice/images/
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0

@@ -24,6 +24,7 @@ spring:
   cloud:
     config:
       enabled: false
+
     openfeign:
       circuitbreaker:
         enabled: true
@@ -37,3 +38,11 @@ resilience4j:
         automatic-transition-from-open-to-half-open-enabled: true
         permittedNumberOfCallsInHalfOpenState: 4
         waitDurationInOpenState: 10000
+
+
+      management:
+        tracing:
+          sampling:
+            probability: 1.0
+
+
