@@ -16,13 +16,13 @@ public interface MediaClient {
     ResponseEntity<List<MediaDTO>> add(@RequestPart("files") List<MultipartFile> files,
                                        @RequestParam("postId") Long postId,@RequestParam("userId") Long userId);
 
-
     @GetMapping("/post/{postId}")
     List<MediaDTO> getMediaByPostId(@PathVariable("postId") Long postId);
 
     @DeleteMapping("/{mediaUuid}")
-    ResponseEntity<Void> delete(@PathVariable String mediaUuid,@RequestParam("userId") Long userId,@RequestParam("postId") Long postId) ;
+    ResponseEntity<Void> delete(@PathVariable String mediaUuid,
+                                @RequestParam("userId") Long userId,@RequestParam("postId") Long postId) ;
+
     @DeleteMapping("/post/{postId}")
     void deleteMediaByPostId(@PathVariable("postId") Long postId);
-
 }

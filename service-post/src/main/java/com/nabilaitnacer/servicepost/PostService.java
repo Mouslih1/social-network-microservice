@@ -6,6 +6,7 @@ import com.nabilaitnacer.servicepost.dto.*;
 import com.nabilaitnacer.servicepost.dto.inter.InteractionDto;
 import com.nabilaitnacer.servicepost.exception.PostException;
 import com.nabilaitnacer.servicepost.exception.PostNotFoundException;
+import com.nabilaitnacer.servicepost.producer.PostProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -20,30 +21,35 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class PostService {
+
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
     private final MediaClient mediaClient;
     private final InteractionClient interactionClient;
+    private final PostProducer postProducer;
 
     @Transactional
-    public PostResponse createPost(Long userId, PostRequest postRequest) {
+    public PostResponse createPost(Long userId, PostRequest postRequest)
+    {
         PostEntityDto postEntityDto = PostEntityDto.builder()
                 .body(postRequest.getBody())
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .userId(userId)
                 .build();
+
         PostEntity postEntity = modelMapper.map(postEntityDto, PostEntity.class);
         postEntity = postRepository.save(postEntity);
         PostResponse postResponse = new PostResponse();
         postResponse.setPost(postEntityDto);
         postResponse.getPost().setId(postEntity.getId());
+
         if (postRequest.getMultipartFiles() != null && !postRequest.getMultipartFiles().isEmpty()) {
             postResponse.setMedias(mediaClient.add(postRequest.getMultipartFiles(), postEntity.getId(), userId).getBody());
-
         }
-        return postResponse;
 
+        postProducer.sendMessage(new PostProducerDto(postResponse.getPost().getId(), postResponse.getPost().getBody()));
+        return postResponse;
     }
 
     public PostResponse updatePost(Long userId, Long id, PostUpdateRequest postUpdateRequest) {
@@ -80,22 +86,24 @@ public class PostService {
         return postResponse;
     }
 
-  public void deletePost(Long userId, Long id) {
+  public void deletePost(Long userId, Long id)
+  {
         PostEntity postEntity = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("Post not found"));
         if (!postEntity.getUserId().equals(userId)) throw new PostException("You are not the owner of the post");
         mediaClient.deleteMediaByPostId(id);
         postRepository.delete(postEntity);
-
     }
 
-    public List<PostEntityDto> getPostsByUserId(Long id) {
+    public List<PostEntityDto> getPostsByUserId(Long id)
+    {
         log.info("id: {}", id);
         return postRepository.findPostEntitiesByUserId(id).stream()
                 .map(postEntity -> modelMapper.map(postEntity, PostEntityDto.class))
                 .toList();
     }
 
-    public List<PostWithInteractionResponse> getAllPost() {
+    public List<PostWithInteractionResponse> getAllPost()
+    {
         List<PostWithInteractionResponse> postWithInteractionResponses = new ArrayList<>();
         List<PostEntity> postEntities = postRepository.findAll();
         postEntities.forEach(postEntity -> {

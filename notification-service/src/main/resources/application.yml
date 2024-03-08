@@ -1,13 +1,17 @@
 server:
-  port: 8074
+  port: 8111
 spring:
   application:
-    name: post-service
+    name: notification-service
   kafka:
-    producer:
+    consumer:
       bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      group-id: myGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
 
   datasource:
     driver-class-name: org.postgresql.Driver
