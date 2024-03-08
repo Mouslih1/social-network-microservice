@@ -78,4 +78,10 @@ spring:
       enabled: false
 
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+
 
