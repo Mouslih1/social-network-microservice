@@ -74,7 +74,7 @@ Gdiscovery/src/main/java/com/example/discovery/DiscoveryApplication.java,f/5/f5
 Ä
 PFriend-service/src/main/java/com/halima/friendservice/service/FriendService.java,4/d/4db81defae2a0baf6b9cb1fca2e7f5b1576f95e2
 Ü
-VFriend-service/src/main/java/com/halima/friendservice/controller/FriendController.java,7\3\73cb4c4e2234626f40656da2648f36f4734838b6
+VFriend-service/src/main/java/com/halima/friendservice/controller/FriendController.java,7/3/73cb4c4e2234626f40656da2648f36f4734838b6
 ë
 ainteraction-service/src/main/java/com/example/interactionservice/service/Impl/CommentService.java,e\f\ef27c836337d0a002cca0b4c6bf828d27391a46b
 v
@@ -206,8 +206,6 @@ Vservice-post/src/main/java/com/nabilaitnacer/servicepost/exception/MediaExcepti
 dservice-post/src/main/java/com/nabilaitnacer/servicepost/exception/InteractionFallbackException.java,e/9/e9b8cb47f24b8546009c20552455bfdfb8361523
 á
 WFriend-service/src/main/java/com/halima/friendservice/openfeign/UserClientFallback.java,4/b/4b0690001e2f6d0314cd349543ca0aed99a3bcff
-à
-Xfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/client/InteractionClient.java,9/7/97f906d7caa9880ddb71fe270726120dae890666
 è
 _feeds-service/src/main/java/com/nabilaitnacer/feedsservice/client/InteractionServiceClient.java,6/1/61edb854c7886b0c835b440ad82af364e5e7fba4
 é
@@ -238,3 +236,7 @@ K
 interaction-service/pom.xml,c/b/cbf4ea808bf82ec7f2c98a7cdfa3385cfd4deb13
 É
 Sfeeds-service/src/main/java/com/nabilaitnacer/feedsservice/service/FeedService.java,e/2/e203f917d1e041daf1ab0d9a0ec29f726fb8623c
+ç
+]feeds-service/src/main/java/com/nabilaitnacer/feedsservice/exception/FriendshipException.java,c/1/c13139d2883253d3cb61101add1829d97464ff12
+G
+service-post/.gitignore,2/f/2f8575216b433487a1a8babe84dd90ef966974d5
