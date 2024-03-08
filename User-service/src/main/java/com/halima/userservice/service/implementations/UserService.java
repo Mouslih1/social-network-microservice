@@ -60,4 +60,9 @@ public class UserService implements IUserService {
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public boolean userExists(Long userId) {
+        return userRepository.existsById(userId);
+    }
 }

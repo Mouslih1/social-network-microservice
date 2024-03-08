@@ -9,12 +9,12 @@ server:
   port: 8016
 spring:
   application:
-    name: medias
+    name: social-media-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/social-networks
+    url: jdbc:postgresql://localhost:5432/mediadb
     username: postgres
-    password: 1111
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: update
@@ -25,8 +25,14 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
-      max-request-size: 10MB
+      max-request-size: 20MB
+      enabled: true
+      file-size-threshold: 2KB
 
 file:
-  storage:
-    path: /home/maro/IdeaProjects/social-network-microservice/images/
+  upload-dir: /Users/kawtarmahy/Desktop/gc/social-network-microservice/images/
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
