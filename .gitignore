@@ -30,7 +30,7 @@ target/
 
 # Sensitive or high-churn files:
 
-.idea/
+.idea
 
 
 ### Eclipse ###
@@ -41,7 +41,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
+.idea
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -58,4 +58,7 @@ build/
 ### Mac OS ###
 .DS_Store
 /.idea/sonarlint/
-/.idea/
+.idea/
+
+images/
+
