@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 F
 Friend-service/pom.xml,c\1\c190b8554e734f9e611c56af3faa2d85bbff26fd
 ƒ
@@ -178,3 +179,28 @@ Vservice-post/src/main/java/com/nabilaitnacer/servicepost/dto/inter/InteractionD
 Sservice-post/src/main/java/com/nabilaitnacer/servicepost/dto/inter/ReactionDto.java,4\5\453e1bc81c2276d0fbda9e0fb88d284869fd3b23
 „
 Tservice-post/src/main/java/com/nabilaitnacer/servicepost/dto/inter/ReactionType.java,e\5\e5a30687bdd4dd085821e24b65b35efcdf5e8f6f
+=======
+€
+Pservice-post/src/main/java/com/nabilaitnacer/servicepost/client/MediaClient.java,f\a\fa7150a52047b7e5754f6ac7c57215292bc45f78
+
+^User-service/src/test/java/com/halima/userservice/service/implementations/UserServiceTest.java,b\5\b54b3ff6280335a6300277e9b042cbd913c6149b
+†
+VUser-service/src/main/java/com/halima/userservice/service/interfaces/IUserService.java,f\6\f6ff2b4d3657c833e46d17860d54d2e0be7cf7ad
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+}
+Mmedia-service/src/main/java/com/media/service/repository/MediaRepository.java,9\f\9f26bb0be476859cca47fb20a2ed0cabdd8f182f
+’
+binteraction-service/src/main/java/com/example/interactionservice/controller/CommentController.java,d\d\dd1a6c73539db9c7944a1ec8538e355f979d00f6
+†
+Vauth-service/src/main/java/com/halima/userservice/service/interfaces/IUserService.java,6\b\6b433f9e57c627a351009524c3a5961be7efa3c1
+€
+Pmedia-service/src/main/java/com/media/service/service/impl/MediaServiceImpl.java,b\2\b2179729f8ab1007ffde0220ce6d46c59508465d
+}
+Mmedia-service/src/main/java/com/media/service/controller/MediaController.java,0\9\09e1dda0d8f867571d296c2798625c426611e0e4
+
+Qsrc/test/java/com/halima/userservice/service/implementations/UserServiceTest.java,1\a\1afd8a1c6414fa4976607328074d46ef40ea84a1
+y
+Isrc/main/java/com/halima/userservice/service/interfaces/IUserService.java,2\7\2728af366baafa66c8e80fa9e4d94167a4141031
+>>>>>>> Stashed changes
