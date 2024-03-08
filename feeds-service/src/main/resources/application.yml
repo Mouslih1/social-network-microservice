@@ -31,3 +31,9 @@ resilience4j:
 
 server:
   port: 8085
+
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

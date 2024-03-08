@@ -20,3 +20,10 @@ spring:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+    management:
+      tracing:
+        sampling:
+          probability: 1.0
+

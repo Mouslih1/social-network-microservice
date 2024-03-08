@@ -8,6 +8,8 @@ eureka:
 server:
   port: 8083
 spring:
+  zipkin:
+    base-url: http://localhost:9411/
   application:
     name: users
   datasource:
@@ -20,3 +22,20 @@ spring:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+    management:
+      tracing:
+        sampling:
+          probability: 1.0
+
+
+
+
+
+
+
+
+
+
+
