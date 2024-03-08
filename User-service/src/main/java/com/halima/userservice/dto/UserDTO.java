@@ -35,7 +35,7 @@ public class UserDTO {
     @NotBlank(message = "Last name cannot be blank")
     private String lastname;
 
-    @Past(message = "Date of Birth must be in the past")
+    @Past(message = "Date of Bith must be in the past")
     private Date dateOfBirth;
 
     @NotBlank(message = "Country cannot be blank")
