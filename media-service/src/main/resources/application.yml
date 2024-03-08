@@ -12,9 +12,9 @@ spring:
     name: social-media-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:1234/social_networks
+    url: jdbc:postgresql://localhost:5432/mediadb
     username: postgres
-    password: 1111
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: update
@@ -30,5 +30,9 @@ spring:
       file-size-threshold: 2KB
 
 file:
-  upload-dir: /home/maro/IdeaProjects/social-network-microservice/images/
+  upload-dir: /Users/kawtarmahy/Desktop/gc/social-network-microservice/images/
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0

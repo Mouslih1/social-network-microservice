@@ -8,15 +8,34 @@ eureka:
 server:
   port: 8083
 spring:
+  zipkin:
+    base-url: http://localhost:9411/
   application:
     name: users
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:1234/social_networks
+    url: jdbc:postgresql://localhost:5432/social-networks
     username: postgres
-    password: 1111
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+    management:
+      tracing:
+        sampling:
+          probability: 1.0
+
+
+
+
+
+
+
+
+
+
+
