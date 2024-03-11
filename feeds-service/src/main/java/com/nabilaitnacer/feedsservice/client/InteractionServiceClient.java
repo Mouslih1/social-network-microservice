@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "reaction-service")
+@FeignClient(name = "reaction-service", fallback = InteractionFallback.class)
 public interface InteractionServiceClient {
 
     @GetMapping("/reaction-service/reaction/{postId}")
     List<CompletReaction> getReactionsByPostId(Long postId);
-    //Todo check if working with reaction service
 
 }

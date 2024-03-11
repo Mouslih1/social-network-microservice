@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
 public class FeedService {
 
     FriendshipServiceClient friendshipServiceClient;
-
-
     InteractionServiceClient interactionServiceClient;
     PostServiceClient postServiceClient;
     private final RedisTemplate<String, Object> redisTemplate;

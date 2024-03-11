@@ -12,6 +12,7 @@ import com.halima.friendservice.repository.FriendRequestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ public class FriendRequestService {
     private final FriendRequestRepository friendRequestRepository;
 
     private final FriendRepository friendRepository;
+    @Qualifier("com.halima.friendservice.openfeign.UserClient")
     private final UserClient userClient;
 
 
