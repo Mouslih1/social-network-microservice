@@ -6,6 +6,7 @@ import com.nabilaitnacer.servicepost.dto.PostRequest;
 import com.nabilaitnacer.servicepost.dto.PostResponse;
 import com.nabilaitnacer.servicepost.dto.PostUpdateRequest;
 import com.nabilaitnacer.servicepost.dto.PostWithInteractionResponse;
+import com.nabilaitnacer.servicepost.producer.PostProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,9 @@ import java.util.List;
 public class PostController {
 
     private final  PostService postService;
-
-
     @PostMapping
     public ResponseEntity<PostResponse> createPost(@RequestHeader("id") String userId ,@ModelAttribute PostRequest postRequest) {
+
         return ResponseEntity.ok(postService.createPost(getUserId(userId),postRequest));
     }
 

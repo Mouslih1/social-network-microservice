@@ -1,9 +1,9 @@
-instance:
-  hostname: localhost
-
-client:
-  service-url:
-    defaultZone: http://localhost:8761/eureka
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
 
 server:
   port: 8078
@@ -13,9 +13,9 @@ spring:
     name: friend-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/social-networks
+    url: jdbc:postgresql://localhost:1234/social_networks
     username: postgres
-    password: 1234
+    password: 1111
   jpa:
     hibernate:
       ddl-auto: update
@@ -40,9 +40,9 @@ resilience4j:
         waitDurationInOpenState: 10000
 
 
-      management:
-        tracing:
-          sampling:
-            probability: 1.0
+#      management:
+#        tracing:
+#          sampling:
+#            probability: 1.0
 
 
