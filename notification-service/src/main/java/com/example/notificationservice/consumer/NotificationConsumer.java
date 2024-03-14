@@ -13,7 +13,5 @@ public class NotificationConsumer {
     public void consumerMsg(PostProducerDto post)
     {
         log.info(String.format("Consuming the message from post-topic topic: %s", post));
-
-
     }
 }

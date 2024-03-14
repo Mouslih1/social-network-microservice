@@ -14,7 +14,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:1234/social_networks
     username: postgres
-    password: 1234
+    password: 1111
   jpa:
     hibernate:
       ddl-auto: update

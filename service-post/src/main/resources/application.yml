@@ -4,11 +4,17 @@ server:
 spring:
   application:
     name: post-service
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postdb
+    url: jdbc:postgresql://localhost:1234/social_networks
     username: postgres
-    password: 1234
+    password: 1111
   jpa:
     hibernate:
       ddl-auto: update
@@ -29,8 +35,3 @@ resilience4j:
         automatic-transition-from-open-to-half-open-enabled: true
         permittedNumberOfCallsInHalfOpenState: 4
         waitDurationInOpenState: 10000
-
-management:
-  tracing:
-    sampling:
-      probability: 1.0

@@ -6,7 +6,7 @@ import com.nabilaitnacer.servicepost.dto.*;
 import com.nabilaitnacer.servicepost.dto.inter.InteractionDto;
 import com.nabilaitnacer.servicepost.exception.PostException;
 import com.nabilaitnacer.servicepost.exception.PostNotFoundException;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import com.nabilaitnacer.servicepost.producer.PostProducer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -22,12 +22,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class PostService {
+
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
     @Qualifier("com.nabilaitnacer.servicepost.client.MediaClient")
     private final MediaClient mediaClient;
     @Qualifier("com.nabilaitnacer.servicepost.client.InteractionClient")
     private final InteractionClient interactionClient;
+    private final PostProducer producer;
 
     @Transactional
     public PostResponse createPost(Long userId, PostRequest postRequest) {
@@ -46,6 +48,7 @@ public class PostService {
             postResponse.setMedias(mediaClient.add(postRequest.getMultipartFiles(), postEntity.getId(), userId).getBody());
 
         }
+        producer.sendMessage(new PostProducerDto(postResponse.getPost().getId(), postResponse.getPost().getBody()));
         return postResponse;
 
     }

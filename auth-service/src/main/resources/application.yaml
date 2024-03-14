@@ -12,9 +12,9 @@ spring:
     name: auth
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/social-networks
+    url: jdbc:postgresql://localhost:1234/social_networks
     username: postgres
-    password: 1234
+    password: 1111
   jpa:
     hibernate:
       ddl-auto: update
@@ -22,8 +22,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 
-    management:
-      tracing:
-        sampling:
-          probability: 1.0
+#management:
+#tracing:
+#        sampling:
+#          probability: 1.0
 
