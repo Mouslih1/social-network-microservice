@@ -42,7 +42,4 @@ public class FriendController {
         friendService.deleteFriend(Long.valueOf(userId), friendId);
         return ResponseEntity.noContent().build();
     }
-
-
-
 }

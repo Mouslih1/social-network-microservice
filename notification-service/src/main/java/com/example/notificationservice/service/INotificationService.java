@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface INotificationService {
 
-    void sendPostCreationNotification(Long sender, PostProducerDto post);
+    void sendPostCreationNotification(PostProducerDto post);
     List<NotificationDto> getUnseenNotifications(Long user);
-    void markNotificationAsSeen(NotificationDto notification);
+    void markNotificationAsSeen(Long notificationId);
 }

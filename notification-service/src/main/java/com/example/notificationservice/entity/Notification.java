@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @Table(name = "notifications")
 @SQLDelete(sql = "UPDATE notifications SET is_delete = true WHERE id=?")
 @Where(clause = "is_delete = false")
+@Builder
 public class Notification {
 
     @Id
@@ -28,5 +29,5 @@ public class Notification {
     private LocalDateTime createdAt;
     private boolean seen;
     private Long userReceiver;
-    private boolean isDeleted = Boolean.FALSE;
+    private boolean isDelete = Boolean.FALSE;
 }

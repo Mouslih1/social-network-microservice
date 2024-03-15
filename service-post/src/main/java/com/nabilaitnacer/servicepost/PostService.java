@@ -48,9 +48,8 @@ public class PostService {
             postResponse.setMedias(mediaClient.add(postRequest.getMultipartFiles(), postEntity.getId(), userId).getBody());
 
         }
-        producer.sendMessage(new PostProducerDto(postResponse.getPost().getId(), postResponse.getPost().getBody()));
+        producer.sendMessage(new PostProducerDto(postResponse.getPost().getId(), postResponse.getPost().getBody(), postResponse.getPost().getUserId(), null));
         return postResponse;
-
     }
 
 

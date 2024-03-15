@@ -17,11 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class FriendService {
+
     private final FriendRepository friendRepository;
     @Qualifier("com.halima.friendservice.openfeign.UserClient")
     private final UserClient userClient;
 
-    public FriendDto findFriendIdsByUserId(Long userId) {
+    public FriendDto findFriendIdsByUserId(Long userId)
+    {
 
         List<Long> friendIds = friendRepository.findFriendIdsByUserId(userId);
         return FriendDto.builder()
@@ -29,24 +31,25 @@ public class FriendService {
                 .friendId(friendIds)
                 .build();
     }
-    public List<UserDTO> getAllFriendsProfile(Long userId){
+
+    public List<UserDTO> getAllFriendsProfile(Long userId)
+    {
         List<Long> friendIds = friendRepository.findFriendIdsByUserId(userId);
         List<UserDTO> userDTOs = new ArrayList<>();
         friendIds.forEach(friendId -> {
             userDTOs.add(userClient.getUserById(friendId).getBody());
         });
         return userDTOs;
-
     }
+
     @Transactional
-    public void deleteFriend(Long userId, Long friendId) {
+    public void deleteFriend(Long userId, Long friendId)
+    {
         log.info("user with id {}  friend with id {} ", userId, friendId);
       friendRepository.deleteByUserIdAndFriendId(userId, friendId);
       log.info("Friend with id {} ", findFriendByUserId(userId, friendId));
       friendRepository.deleteByUserIdAndFriendId(friendId, userId);
         log.info("Friend with id {} ", findFriendByUserId(friendId, userId));
-
-
     }
 
     public Boolean existsByUserIdAndFriendId(Long userId, Long friendId) {

@@ -15,6 +15,6 @@ public class NotificationDto {
     private Long relatedId;
     private String message;
     private LocalDateTime createdAt;
-    private boolean seen;
+    private boolean seen = Boolean.FALSE;
     private Long userReceiver;
 }

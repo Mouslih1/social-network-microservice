@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PostProducerDto {
 
-    private Long id;
+    private Long relatedId;
     private String body;
+    private Long senderId;
+    private Long receivedId;
 }
