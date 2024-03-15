@@ -22,7 +22,7 @@ public class NotificationController {
         return new ResponseEntity<>(iNotificationService.getUnseenNotifications(Long.valueOf(userConnect)), HttpStatus.OK);
     }
 
-    @GetMapping("/markAsSeen/{notificationId}")
+    @PutMapping("/markAsSeen/{notificationId}")
     public ResponseEntity<Void> markNotificationAsSeen(@PathVariable Long notificationId)
     {
         iNotificationService.markNotificationAsSeen(notificationId);
