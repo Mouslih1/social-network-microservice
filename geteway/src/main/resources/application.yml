@@ -5,6 +5,8 @@ server:
   port: 8222
 
 spring:
+  main:
+    web-application-type: reactive
   application:
     name: gateway
   cloud:
@@ -87,10 +89,16 @@ spring:
             - Path=/api/v1/notifications/**
           filters:
             - AuthenticationFilter
+#      default-filters:
+#        DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+#          globalcors:
+#          corsConfigurations:'[/]':
+#            allowedOrigins: ""
+#            allowedMethods: ""
+#            allowedHeaders: "*"
 
 
-
-#/api/friend-requests
+    #/api/friend-requests
     discovery:
       enabled: true
     config:
@@ -101,7 +109,6 @@ management:
   tracing:
     sampling:
       probability: 1.0
-
 
 
 
