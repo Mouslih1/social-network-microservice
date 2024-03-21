@@ -19,14 +19,16 @@ public class JwtService {
     public void validateToken(final String token) {
         Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
     }
-    public String generateToken(Long id, String username, String email) {
+    public String generateToken(Long id, String username, String email)
+    {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id",id);
         claims.put("email", email);
         return createToken(claims, username);
     }
 
-    private String createToken(Map<String, Object> claims, String userName) {
+    private String createToken(Map<String, Object> claims, String userName)
+    {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userName)

@@ -3,7 +3,6 @@ package com.halima.userservice.controller;
 import com.halima.userservice.dto.UserDTO;
 import com.halima.userservice.exception.Error;
 import com.halima.userservice.service.interfaces.IUserService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,6 +25,12 @@ public class UserController {
         log.info("Fetching user with id: {}", userId);
         log.info("User : {}" ,userService.getById(userId));
         return new ResponseEntity<>(userService.getById(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/logged")
+    public ResponseEntity<UserDTO> getProfil(@RequestHeader("id") Long id)
+    {
+        return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping("/exist/{userId}")
