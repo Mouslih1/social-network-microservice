@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/comments")
 @Slf4j
+@CrossOrigin("*")
 public class CommentController {
 
     private final IcommentService icommentService;

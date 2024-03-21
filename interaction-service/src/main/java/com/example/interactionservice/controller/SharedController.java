@@ -14,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/shareds")
+@CrossOrigin("*")
 public class SharedController {
 
     private final IsharedService isharedService;

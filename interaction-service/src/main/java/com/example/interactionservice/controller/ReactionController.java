@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/reactions")
+@CrossOrigin("*")
 public class ReactionController {
 
     private final IreactionService ireactionService;
