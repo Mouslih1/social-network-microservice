@@ -25,6 +25,7 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<PostResponse> createPost(@RequestHeader("id") String userId ,@ModelAttribute PostRequest postRequest) {
+        log.info("create post {} ", postRequest);
         return ResponseEntity.ok(postService.createPost(getUserId(userId),postRequest));
     }
 

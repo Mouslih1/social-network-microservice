@@ -27,7 +27,13 @@ public class UserController {
         log.info("User : {}" ,userService.getById(userId));
         return new ResponseEntity<>(userService.getById(userId), HttpStatus.OK);
     }
-
+    @GetMapping("/login")
+    public ResponseEntity<UserDTO> getUserLogged(@RequestHeader("id") Long userId)
+    {
+        log.info("Fetching user with id: {}", userId);
+        log.info("User : {}" ,userService.getById(userId));
+        return new ResponseEntity<>(userService.getById(userId), HttpStatus.OK);
+    }
     @GetMapping("/exist/{userId}")
     public ResponseEntity<Boolean> userExists(@PathVariable Long userId)
     {
