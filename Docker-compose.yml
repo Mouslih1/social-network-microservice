@@ -2,15 +2,47 @@ version: '3.1'
 
 services:
 
- zipkin:
-  container_name: zipkin
-  image: openzipkin/zipkin
+ postgresql:
+  container_name: postgres-sql
+  image: postgres
+  environment:
+   POSTGRES_USER: postgres
+   POSTGRES_PASSWORD: 1111
+   PGDATA: /data/postgres
+  volumes:
+   - /var/lib/postgresql/data
   ports:
-   - "9411:9411"
+   - "1234:5432"
   networks:
-   - zipkin
+   - social-network-app
+  restart: unless-stopped
+
+ social-network-discovery-service:
+  build: ./discovery
+  container_name: social-network-discovery-service
+  ports:
+   - '8761:8761'
+  expose:
+   - '8761'
+  healthcheck:
+   test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+   interval: 10s
+  networks:
+   - social-network-app
+
+ social-network-auth-service:
+  build: ./auth-service
+  container_name: social-network-auth-service
+  ports:
+   - '8101:8101'
+  expose:
+   - '8101'
+  networks:
+   - social-network-app
+  depends_on:
+   - postgresql
+   - social-network-discovery-service
 
 networks:
-  zipkin:
-    driver: bridge
-
+ social-network-app:
+  driver: bridge

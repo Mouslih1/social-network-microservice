@@ -58,7 +58,6 @@ spring:
             - Path=/api/v1/auth/**
 
 
-
         - id: users-data
           uri: http://localhost:8083
           predicates:
@@ -97,13 +96,6 @@ spring:
             - Path=/api/v1/notifications/**
           filters:
             - AuthenticationFilter
-#      default-filters:
-#        DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
-#          globalcors:
-#          corsConfigurations:'[/]':
-#            allowedOrigins: ""
-#            allowedMethods: ""
-#            allowedHeaders: "*"
 
 
     #/api/friend-requests
