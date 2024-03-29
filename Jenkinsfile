@@ -17,11 +17,18 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    if (isUnix()) {
+                   def microservices = ['media-service','discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'notification-service', 'service-post', 'User-service', 'geteway']
+
+                   microservices.each { service ->
+                           dir(service) {
+                           checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mouslih1/social-network-microservice']]])
+                   if (isUnix()) {
                         sh 'mvn clean install'
-                    } else {
+                   } else {
                         bat 'mvn clean install'
-                    }
+                   }
+                  }
+
                 }
             }
         }
