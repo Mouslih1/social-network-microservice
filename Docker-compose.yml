@@ -20,6 +20,8 @@ services:
  social-network-discovery-service:
   build: ./discovery
   container_name: social-network-discovery-service
+  image: marouane01/social-networks-automatisation-devops_social-network-discovery-service
+
   ports:
    - '8761:8761'
   expose:
@@ -33,6 +35,8 @@ services:
  social-network-auth-service:
   build: ./auth-service
   container_name: social-network-auth-service
+  image: marouane01/social-networks-automatisation-devops_social-network-auth-service
+
   ports:
    - '8101:8101'
   expose:
@@ -45,6 +49,8 @@ services:
  social-network-geteway-service:
   build: ./geteway
   container_name: social-network-geteway-service
+  image: marouane01/social-networks-automatisation-devops_social-network-geteway-service
+
   ports:
    - '8222:8222'
   expose:
@@ -57,6 +63,8 @@ services:
  social-network-friend-service:
    build: ./Friend-service
    container_name: social-network-friend-service
+   image: marouane01/social-networks-automatisation-devops_social-network-friend-service
+
    ports:
     - '8078:8078'
    expose:
@@ -69,6 +77,8 @@ services:
  social-network-interaction-service:
   build: ./interaction-service
   container_name: social-network-interaction-service
+  image: marouane01/social-networks-automatisation-devops_social-network-interaction-service
+
   ports:
    - '8070:8070'
   expose:
@@ -81,6 +91,8 @@ services:
  social-network-media-service:
   build: ./media-service
   container_name: social-network-media-service
+  image: marouane01/social-networks-automatisation-devops_social-network-media-service
+
   ports:
    - '8016:8016'
   expose:
@@ -93,6 +105,8 @@ services:
  social-network-user-service:
   build: ./User-service
   container_name: social-network-user-service
+  image: marouane01/social-networks-automatisation-devops_social-network-user-service
+
   ports:
    - '8083:8083'
   expose:

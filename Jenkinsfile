@@ -56,6 +56,18 @@ pipeline {
                 }
             }
         }
+
+        stage('Push to Docker Hub') {
+                    steps {
+                        script {
+                            if (isUnix()) {
+                                sh 'docker-compose -f Docker-compose.yml push'
+                            } else {
+                                bat 'docker-compose -f Docker-compose.yml push'
+                            }
+                        }
+                    }
+                }
     }
 
     post {
