@@ -6,6 +6,9 @@ pipeline {
         jdk 'java17'
         git 'git'
     }
+     environment {
+            DOCKER_CREDENTIALS = 'marouane01'
+     }
 
     stages {
         stage('Checkout') {
@@ -60,9 +63,13 @@ pipeline {
         stage('Push to Docker Hub') {
                     steps {
                         script {
+                            withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS, usernameVariable: 'marouane01', passwordVariable: 'Mouslih2001@')]) {
+
                             if (isUnix()) {
+                                sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                                 sh 'docker-compose -f Docker-compose.yml push'
                             } else {
+                                bat 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                                 bat 'docker-compose -f Docker-compose.yml push'
                             }
                         }
