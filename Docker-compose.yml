@@ -42,6 +42,67 @@ services:
   depends_on:
    - postgresql
    - social-network-discovery-service
+   - social-network-geteway-service
+
+ social-network-geteway-service:
+  build: ./geteway
+  container_name: social-network-geteway-service
+  ports:
+   - '8222:8222'
+  expose:
+   - '8222'
+  networks:
+   - social-network-app
+  depends_on:
+   - social-network-discovery-service
+
+ social-network-friend-service:
+   build: ./Friend-service
+   container_name: social-network-friend-service
+   ports:
+    - '8078:8078'
+   expose:
+    - '8078'
+   networks:
+    - social-network-app
+   depends_on:
+    - social-network-geteway-service
+
+ social-network-interaction-service:
+  build: ./interaction-service
+  container_name: social-network-interaction-service
+  ports:
+   - '8070:8070'
+  expose:
+   - '8070'
+  networks:
+   - social-network-app
+  depends_on:
+   - social-network-geteway-service
+
+ social-network-media-service:
+  build: ./media-service
+  container_name: social-network-media-service
+  ports:
+   - '8016:8016'
+  expose:
+   - '8016'
+  networks:
+   - social-network-app
+  depends_on:
+   - social-network-geteway-service
+
+ social-network-user-service:
+  build: ./User-service
+  container_name: social-network-user-service
+  ports:
+   - '8083:8083'
+  expose:
+   - '8083'
+  networks:
+   - social-network-app
+  depends_on:
+   - social-network-geteway-service
 
 networks:
  social-network-app:
