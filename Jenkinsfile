@@ -23,9 +23,9 @@ pipeline {
                         dir(service) {
                             checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mouslih1/social-network-microservice']]])
                             if (isUnix()) {
-                                sh 'mvn test'
+                                sh 'mvn clean install'
                             } else {
-                                bat 'mvn test'
+                                bat 'mvn clean install'
                             }
                         }
                     }
