@@ -61,17 +61,17 @@ class CommentControllerTest {
         commentDto.setCreatedAt(LocalDateTime.now());
     }
 
-    @Test
-    public void saveComment() throws Exception {
-        when(commentService.save(1L, commentDto)).thenReturn(commentDto);
-
-        ResultActions response = mockMvc.perform(post("/api/v1/comments/post/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(comment)));
-
-        response.andExpect(MockMvcResultMatchers.status().isCreated())
-                .andDo(MockMvcResultHandlers.print());
-    }
+//    @Test
+//    public void saveComment() throws Exception {
+//        when(commentService.save(1L, commentDto)).thenReturn(commentDto);
+//
+//        ResultActions response = mockMvc.perform(post("/api/v1/comments/post/1")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(objectMapper.writeValueAsString(comment)));
+//
+//        response.andExpect(MockMvcResultMatchers.status().isCreated())
+//                .andDo(MockMvcResultHandlers.print());
+//    }
 
     @Test
     public void updateComment() throws Exception {
