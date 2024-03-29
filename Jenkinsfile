@@ -17,18 +17,18 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                   def microservices = ['media-service','discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'notification-service', 'service-post', 'User-service', 'geteway']
+                    def microservices = ['media-service','discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'notification-service', 'service-post', 'User-service', 'gateway']
 
-                   microservices.each { service ->
-                           dir(service) {
-                           checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mouslih1/social-network-microservice']]])
-                   if (isUnix()) {
-                        sh 'mvn clean install'
-                   } else {
-                        bat 'mvn clean install'
-                   }
-                  }
-
+                    microservices.each { service ->
+                        dir(service) {
+                            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mouslih1/social-network-microservice']]])
+                            if (isUnix()) {
+                                sh 'mvn clean install'
+                            } else {
+                                bat 'mvn clean install'
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -47,17 +47,15 @@ pipeline {
 
         stage('Docker') {
             steps {
-               script {
-                  if (isUnix()) {
-                    sh 'docker-compose -f Docker-compose.yml up -d --build'
-                  } else {
-                    bat 'docker-compose -f Docker-compose.yml up -d --build'
-                  }
-               }
+                script {
+                    if (isUnix()) {
+                        sh 'docker-compose -f Docker-compose.yml up -d --build'
+                    } else {
+                        bat 'docker-compose -f Docker-compose.yml up -d --build'
+                    }
+                }
             }
-       }
-
-
+        }
 
         stage('Report') {
             steps {
