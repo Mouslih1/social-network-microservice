@@ -37,9 +37,9 @@ pipeline {
             steps {
                 script {
                     if (isUnix()) {
-                        sh 'docker-compose -f Docker-compose.yml up -d'
+                        sh 'docker-compose -f Docker-compose.yml up -d --build'
                     } else {
-                        bat 'docker-compose -f Docker-compose.yml up -d'
+                        bat 'docker-compose -f Docker-compose.yml up -d --build'
                     }
                 }
             }

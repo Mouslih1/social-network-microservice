@@ -2,20 +2,20 @@ version: '3.1'
 
 services:
 
- postgresql:
-  container_name: postgres-sql
-  image: postgres
-  environment:
-   POSTGRES_USER: postgres
-   POSTGRES_PASSWORD: 1111
-   PGDATA: /data/postgres
-  volumes:
-   - /var/lib/postgresql/data
-  ports:
-   - "1234:5432"
-  networks:
-   - social-network-app
-  restart: unless-stopped
+# postgresql:
+#  container_name: postgres-sql
+#  image: postgres
+#  environment:
+#   POSTGRES_USER: postgres
+#   POSTGRES_PASSWORD: 1111
+#   PGDATA: /data/postgres
+#  volumes:
+#   - /var/lib/postgresql/data
+#  ports:
+#   - "1234:5432"
+#  networks:
+#   - social-network-app
+#  restart: unless-stopped
 
  social-network-discovery-service:
   build: ./discovery
