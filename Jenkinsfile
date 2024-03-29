@@ -21,7 +21,6 @@ pipeline {
 
                    microservices.each { service ->
                        dir(service) {
-                           checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mouslih1/social-network-microservice']]])
                            if (isUnix()) {
                                sh 'mvn clean install'
                            } else {
