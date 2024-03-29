@@ -40,7 +40,6 @@ services:
   networks:
    - social-network-app
   depends_on:
-   - postgresql
    - social-network-geteway-service
 
  social-network-geteway-service:
