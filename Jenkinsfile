@@ -6,9 +6,10 @@ pipeline {
         jdk 'java17'
         git 'git'
     }
-     environment {
-            DOCKER_CREDENTIALS = 'marouane01'
-     }
+
+    environment {
+        DOCKER_CREDENTIALS = 'Docker Hub Credentials'
+    }
 
     stages {
         stage('Checkout') {
@@ -17,24 +18,23 @@ pipeline {
             }
         }
 
-       stage('Build') {
-           steps {
-               script {
-                   def microservices = ['discovery','geteway', 'media-service','auth-service', 'Friend-service', 'interaction-service', 'User-service']
+        stage('Build') {
+            steps {
+                script {
+                    def microservices = ['discovery', 'gateway', 'media-service', 'auth-service', 'friend-service', 'interaction-service', 'user-service']
 
-                   microservices.each { service ->
-                       dir(service) {
-                           if (isUnix()) {
-                               sh 'mvn clean install'
-                           } else {
-                               bat 'mvn clean install'
-                           }
-                       }
-                   }
-               }
-           }
-       }
-
+                    microservices.each { service ->
+                        dir(service) {
+                            if (isUnix()) {
+                                sh 'mvn clean install'
+                            } else {
+                                bat 'mvn clean install'
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         stage('Docker') {
             steps {
@@ -61,20 +61,20 @@ pipeline {
         }
 
         stage('Push to Docker Hub') {
-                    steps {
-                        script {
-                            withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS, usernameVariable: 'marouane01', passwordVariable: 'Mouslih2001@')]) {
-
-                            if (isUnix()) {
-                                sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                                sh 'docker-compose -f Docker-compose.yml push'
-                            } else {
-                                bat 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                                bat 'docker-compose -f Docker-compose.yml push'
-                            }
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS, usernameVariable: 'marouane01', passwordVariable: 'Mouslih2001@')]) {
+                        if (isUnix()) {
+                            sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                            sh 'docker-compose -f Docker-compose.yml push'
+                        } else {
+                            bat 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                            bat 'docker-compose -f Docker-compose.yml push'
                         }
                     }
                 }
+            }
+        }
     }
 
     post {
