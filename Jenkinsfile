@@ -14,36 +14,36 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                script {
-                    def microservices = ['media-service','discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'notification-service', 'service-post', 'User-service', 'gateway']
+               stage('Build Maven') {
+                   steps {
+                       script {
+                           // Parcourir les répertoires des microservices et exécuter Maven pour construire
+                           def microservices = ['media-service','discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'notification-service', 'service-post', 'User-service', 'geteway']
 
-                    microservices.each { service ->
-                        dir(service) {
-                            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mouslih1/social-network-microservice']]])
-                            if (isUnix()) {
-                                sh 'mvn clean install'
-                            } else {
-                                bat 'mvn clean install'
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                           microservices.each { service ->
+                               dir(service) {
+                                   checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sofiawh/social-network']]])
+                                   sh "mvn clean install"
+                               }
+                           }
+                       }
+                   }
+               }
+               stage('Run Tests') {
+                   steps {
+                       script {
+                           // Parcourir les répertoires des microservices et exécuter les tests avec Maven
+                           def microservices = ['discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'media-service', 'notification-service', 'service-post', 'User-service', 'geteway']
 
-        stage('Test') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'mvn test'
-                    } else {
-                        bat 'mvn test'
-                    }
-                }
-            }
-        }
+                           microservices.each { service ->
+                               dir(service) {
+                                   sh  "mvn test"
+                               }
+                           }
+                       }
+                   }
+               }
+
 
         stage('Docker') {
             steps {
