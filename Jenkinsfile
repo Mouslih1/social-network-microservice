@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def microservices = ['media-service','discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'notification-service', 'service-post', 'User-service', 'gateway']
+                    def microservices = ['discovery', 'auth-service', 'Friend-service', 'interaction-service', 'User-service', 'gateway']
 
                     microservices.each { service ->
                         dir(service) {
